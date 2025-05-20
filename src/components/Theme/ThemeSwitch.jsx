@@ -7,7 +7,7 @@ import { CiLight } from "react-icons/ci";
 const ThemeSwitch = () => {
     const { theme, toggleTheme } = useTheme();
     return (
-        <div className='fixed top-8 right-8'>
+        <div className=''>
             <div onClick={toggleTheme} className='transition duration-500'>
                 {
                     theme === 'light'
