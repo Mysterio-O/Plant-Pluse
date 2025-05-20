@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { ThemeProvider } from '../contexts/ThemeContext';
 const RootLayout = () => {
     return (
-        <div>
-            Root layout
-        </div>
+        <ThemeProvider>
+            
+        </ThemeProvider>
     );
 };
 
