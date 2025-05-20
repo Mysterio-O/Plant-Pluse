@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import ThemeSwitch from '../Theme/ThemeSwitch'
 import { Link, NavLink } from 'react-router';
 import './header.css'
@@ -49,14 +49,14 @@ const Header = () => {
                     onClick={handleMenu}
                     className='lg:hidden'>
 
-                        {
-                            isMenuOpen ? <MdOutlineCancel size={24} /> : <CiMenuKebab size={24}/>
-                        }
-                    
-                    
+                    {
+                        isMenuOpen ? <MdOutlineCancel size={24} /> : <CiMenuKebab size={24} />
+                    }
+
+
                 </div>
             </div>
-            <div className={`absolute ${isMenuOpen ? 'right-10 top-15' : ''} -top-150 -right-100 transition-all duration-700  bg-[#009688] p-2 rounded-xl`}>
+            <div className={`absolute ${isMenuOpen ? 'right-4 top-16' : '-top-40 right-4'} transition-all duration-700  bg-[#009688]/20 p-2 rounded-xl z-10 backdrop-blur-sm lg:hidden`}>
                 <ul>{links}</ul>
             </div>
         </nav>

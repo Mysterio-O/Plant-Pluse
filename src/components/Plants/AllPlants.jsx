@@ -15,7 +15,7 @@ const AllPlants = () => {
     // console.log(plants)
     return (
         <div className='max-w-6xl mx-auto mt-6'>
-            <div className="overflow-x-auto dark:text-white">
+             <div className="overflow-x-auto dark:text-white">
                 {
                     loading ? <Loader />
                         : <table className="table">
@@ -24,7 +24,7 @@ const AllPlants = () => {
                                 <tr className='w-full'>
                                     <th>Plant</th>
                                     <th>Watering Frequency</th>
-                                    <th>Watering</th>
+                                    <th className='hidden md:block'>Watering</th>
                                     <th>Care Level</th>
                                     <th>Action</th>
                                 </tr>

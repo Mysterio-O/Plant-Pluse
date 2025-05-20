@@ -1,9 +1,12 @@
-import React from 'react';
-import { FiActivity } from 'react-icons/fi';
+import React, { useContext } from 'react';
+import { GiTreeBranch } from 'react-icons/gi';
 import { MdFlipToBack } from 'react-icons/md';
 import { Link } from 'react-router';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
+    const userData = useContext(AuthContext);
+    console.log(userData)
     return (
         <div className='min-h-screen bg-[url(/auth-bg.png)]'>
 
@@ -76,12 +79,12 @@ const Register = () => {
                 {/* second content */}
                 <div className='md:col-span-4 lg:col-span-6 backdrop-blur-md bg-white/10 rounded-xl md:p-8 shadow-lg text-white group mx-auto'>
                     <div className='max-w-[400px] lg:max-w-[550px] p-3'>
-                        <h2 className='text-3xl text-center font-bold mb-4  items-center text-green-400 relative'>Join the AppVibe — Discover, Download, Do More.
+                        <h2 className='text-3xl text-center font-bold mb-4  items-center text-green-400 relative'>🌵 “Plant Smarter. Care Better. Live Greener.
                             <span className='absolute text-black'>
-                                <FiActivity size={36} />
+                                <GiTreeBranch size={36} className='text-green-500'/>
                             </span>
                         </h2>
-                        <img src='/signup.png' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
+                        <img src='/register.webp' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
                         <p className="text-xl text-center mb-3 mt-6">
                             Already have an account?
                         </p>
