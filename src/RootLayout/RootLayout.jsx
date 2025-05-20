@@ -6,8 +6,8 @@ const RootLayout = () => {
     return (
         <ThemeProvider>
             <div className='bg-[#FAFAFA] dark:bg-[#263238] min-h-screen'>
-                <Header/>
-                <Outlet/>
+                <Header />
+                <Outlet />
             </div>
         </ThemeProvider>
     );

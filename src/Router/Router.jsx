@@ -6,11 +6,13 @@ import AllPlants from "../components/Plants/AllPlants";
 import MyPlants from "../components/Plants/MyPlants";
 import Register from "../components/Register/Register";
 import SignIn from "../components/SignIn/SignIn";
+import Page404 from "../pages/Page404";
 
 const Router = createBrowserRouter([
     {
         path: '/',
         Component: RootLayout,
+        errorElement: <Page404/>,
         children: [
             {index:true, Component: Home},
             {

@@ -10,10 +10,10 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const links = <>
-        <NavLink to='/'><li className='hover:text-blue-500 text-black'>Home</li></NavLink>
-        <NavLink to='/all_plants'><li className='hover:text-blue-500 text-black'>All Plants</li></NavLink>
-        <NavLink to='/add_plants'><li className='hover:text-blue-500 text-black'>Add Plants</li></NavLink>
-        <NavLink to='/my_plants'><li className='hover:text-blue-500 text-black'>My Plants</li></NavLink>
+        <NavLink to='/'><li className='hover:text-blue-500 text-black transition duration-300'>Home</li></NavLink>
+        <NavLink to='/all_plants'><li className='hover:text-blue-500 transition duration-300 text-black'>All Plants</li></NavLink>
+        <NavLink to='/add_plants'><li className='hover:text-blue-500 text-black transition duration-300'>Add Plants</li></NavLink>
+        <NavLink to='/my_plants'><li className='hover:text-blue-500 text-black transition duration-300'>My Plants</li></NavLink>
     </>
 
 
