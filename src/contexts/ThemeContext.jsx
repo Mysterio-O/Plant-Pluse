@@ -4,13 +4,12 @@ const ThemeContext = createContext();
 
 export function ThemeProvider({ children }) {
     const [theme, setTheme] = useState(() => {
-        // This ensures the theme is loaded immediately on first render
         if (typeof window !== 'undefined') {
             const saved = localStorage.getItem('theme');
             const systemPref = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
             return saved || systemPref;
         }
-        return "light"; // Fallback for SSR
+        return "light"; 
     });
 
     useEffect(() => {
