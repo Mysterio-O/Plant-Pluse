@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co/HD9mgtGt/alo-vera.webp",
+    "name": "Aloe Vera",
+    "category": "Succulent",
+    "description": "Aloe Vera is a succulent plant known for its medicinal properties and easy maintenance.",
+    "careLevel": "Easy",
+    "wateringFrequency": "Every 10 days",
+    "lastWateredDate": "2025-05-15",
+    "nextWateringDate": "2025-05-25",
+    "healthStatus": "Healthy"
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co/4g5PCqjg/Boston-Fern.webp",
+    "name": "Boston Fern",
+    "category": "Fern",
+    "description": "Boston Ferns are popular indoor plants with lush, feathery fronds that prefer humidity.",
+    "careLevel": "Moderate",
+    "wateringFrequency": "Every 3 days",
+    "lastWateredDate": "2025-05-18",
+    "nextWateringDate": "2025-05-21",
+    "healthStatus": "Slightly Unhealthy"
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co/p6QtFMdt/Rose.webp",
+    "name": "Rose",
+    "category": "Flowering",
+    "description": "Roses are classic flowering plants valued for their beauty and fragrance.",
+    "careLevel": "Difficult",
+    "wateringFrequency": "Every 2 days",
+    "lastWateredDate": "2025-05-19",
+    "nextWateringDate": "2025-05-21",
+    "healthStatus": "Healthy"
+  },
+  {
+    "id": 4,
+    "image": "https://i.ibb.co/F4d4nFBF/Spider-Plant.webp",
+    "name": "Spider Plant",
+    "category": "Indoor",
+    "description": "Spider Plants are hardy and excellent air purifiers, ideal for beginners.",
+    "careLevel": "Easy",
+    "wateringFrequency": "Every 5 days",
+    "lastWateredDate": "2025-05-17",
+    "nextWateringDate": "2025-05-22",
+    "healthStatus": "Healthy"
+  },
+  {
+    "id": 5,
+    "image": "https://i.ibb.co/QFLpjp10/Tulsi-Holy-Basil.webp",
+    "name": "Tulsi (Holy Basil)",
+    "category": "Herb",
+    "description": "Tulsi is a sacred herb in South Asia known for its healing properties and aromatic leaves.",
+    "careLevel": "Moderate",
+    "wateringFrequency": "Every 2 days",
+    "lastWateredDate": "2025-05-19",
+    "nextWateringDate": "2025-05-21",
+    "healthStatus": "Nutrient Deficient"
+  },
+  {
+    "id": 6,
+    "image": "https://i.ibb.co/GQFXSF7h/Snake-Plant.webp",
+    "name": "Snake Plant",
+    "category": "Succulent",
+    "description": "A resilient, air-purifying succulent that thrives with minimal water and low light.",
+    "careLevel": "Easy",
+    "wateringFrequency": "Every 14 days",
+    "lastWateredDate": "2025-05-10",
+    "nextWateringDate": "2025-05-24",
+    "healthStatus": "Healthy"
+  }
+]

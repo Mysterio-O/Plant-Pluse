@@ -23,7 +23,7 @@ const Header = () => {
     }
 
     return (
-        <nav className='dark:bg-[#F5F5F5] px-4 py-2 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative'>
+        <nav className='dark:bg-gray-500 px-4 py-2 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative'>
             <div className='flex gap-2 items-center'>
                 <img src="/logo-1.webp" alt="Logo" className='h-14 rounded-full' />
                 <h2 className='text-3xl font-semibold rancho-regular text-black dark:text-blue-400 hidden md:block'>Plant_Pulse</h2>
