@@ -81,11 +81,16 @@ const NewPlants = () => {
                     <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
                         🌿 Explore Our Plant Collection
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                        {
-                            plants.map(plant => <PlantCard key={plant.id} plant={plant} />)
-                        }
-                    </div>
+                    {
+                        loading ?
+                            <span className="loading loading-ring loading-xl"></span>
+                            : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                                {
+                                    plants.map(plant => <PlantCard key={plant.id} plant={plant} />)
+                                }
+                            </div>
+
+                    }
                 </div>
             </section>
         </div>
