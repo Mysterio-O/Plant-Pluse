@@ -4,6 +4,7 @@ import NewPlants from '../NewPlants/NewPlants';
 import PlantCare from '../PlantCare/PlantCare';
 import SeasonalPlant from '../SeasonalPlant/SeasonalPlant';
 import Footer from '../Footer/Footer';
+import PlantsMarquee from '../PlantsMarquee/PlantsMarquee';
 
 const Home = () => {
     return (
@@ -19,6 +20,9 @@ const Home = () => {
             </section>
             <section className='max-w-6xl mx-auto'>
                 <SeasonalPlant/>
+            </section>
+            <section className='max-w-6xl mx-auto mt-16'>
+                <PlantsMarquee/>
             </section>
 
             <footer id='footer'>

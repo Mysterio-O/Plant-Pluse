@@ -29,51 +29,62 @@ const Header = () => {
 
 
     return (
-        <nav className='dark:bg-gray-500 px-4 py-2 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative'>
-            <div className='flex gap-2 items-center'>
-                <img src="/logo-1.webp" alt="Logo" className='h-14 rounded-full' />
-                <h2 className='text-3xl font-semibold rancho-regular text-black dark:text-blue-400 hidden md:block'>Plant_Pulse</h2>
+        <nav className="dark:bg-gray-700 bg-white px-4 py-3 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative shadow-md transition-colors duration-300">
+            <div className="flex gap-3 items-center">
+                <img src="/logo-1.webp" alt="Logo" className="h-14 rounded-full shadow-md" />
+                <h2 className="text-3xl font-semibold rancho-regular text-gray-800 dark:text-green-300 hidden md:block">
+                    Plant_Pulse
+                </h2>
             </div>
-            <div className='hidden md:block'>
-                <ul className='flex gap-5'>
+
+            <div className="hidden md:block">
+                <ul className="flex gap-6 text-gray-700 dark:text-gray-100 font-medium">
                     {links}
                 </ul>
             </div>
-            <div>
-                {
-                    user ? <button
+
+            <div className="flex items-center space-x-4">
+                {user ? (
+                    <button
                         onClick={handleLogOut}
-                        className='btn btn-outline hover:bg-[#FFCA28] hover:text-white'>LogOut</button>
-                        : <div className='space-x-3'>
-                            <Link to='/auth/register'>
-                                <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>Register</button>
-                            </Link>
-                            <Link to='/auth/login'>
-                                <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>SignIn</button>
-                            </Link>
-                        </div>
-                }
-
-
-
+                        className="btn btn-outline border-green-600 text-green-700 hover:bg-green-600 hover:text-white transition-colors duration-300"
+                    >
+                        LogOut
+                    </button>
+                ) : (
+                    <div className="space-x-3">
+                        <Link to="/auth/register">
+                            <button className="btn btn-outline border-blue-500 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
+                                Register
+                            </button>
+                        </Link>
+                        <Link to="/auth/login">
+                            <button className="btn btn-outline border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors duration-300">
+                                SignIn
+                            </button>
+                        </Link>
+                    </div>
+                )}
             </div>
-            <div className='flex gap-2 items-center flex-row-reverse'>
+
+            <div className="flex items-center gap-3 ml-4">
+
                 <ThemeSwitch />
-                <div
-                    onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className='md:hidden'>
-
-                    {
-                        isMenuOpen ? <MdOutlineCancel size={24} /> : <CiMenuKebab size={24} />
-                    }
 
 
+                <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden cursor-pointer text-gray-700 dark:text-white">
+                    {isMenuOpen ? <MdOutlineCancel size={26} /> : <CiMenuKebab size={26} />}
                 </div>
             </div>
-            <div className={`absolute ${isMenuOpen ? 'right-4 top-16' : '-top-40 right-4'} transition-all duration-700  bg-[#009688]/20 p-2 rounded-xl z-10 backdrop-blur-sm md:hidden`}>
-                <ul>{links}</ul>
+
+            <div
+                className={`absolute ${isMenuOpen ? 'top-16 opacity-100 scale-100' : 'top-10 opacity-0 scale-90 pointer-events-none'
+                    } right-4 transition-all duration-500 ease-in-out bg-white dark:bg-gray-800 border dark:border-gray-600 p-4 rounded-xl z-20 backdrop-blur-md shadow-xl md:hidden`}
+            >
+                <ul className="space-y-2 text-gray-800 dark:text-gray-100 font-medium">{links}</ul>
             </div>
         </nav>
+
     );
 };
 
