@@ -34,7 +34,7 @@ const Header = () => {
                 <img src="/logo-1.webp" alt="Logo" className='h-14 rounded-full' />
                 <h2 className='text-3xl font-semibold rancho-regular text-black dark:text-blue-400 hidden md:block'>Plant_Pulse</h2>
             </div>
-            <div className='hidden lg:block'>
+            <div className='hidden md:block'>
                 <ul className='flex gap-5'>
                     {links}
                 </ul>
@@ -61,7 +61,7 @@ const Header = () => {
                 <ThemeSwitch />
                 <div
                     onClick={() => setIsMenuOpen(!isMenuOpen)}
-                    className='lg:hidden'>
+                    className='md:hidden'>
 
                     {
                         isMenuOpen ? <MdOutlineCancel size={24} /> : <CiMenuKebab size={24} />
@@ -70,7 +70,7 @@ const Header = () => {
 
                 </div>
             </div>
-            <div className={`absolute ${isMenuOpen ? 'right-4 top-16' : '-top-40 right-4'} transition-all duration-700  bg-[#009688]/20 p-2 rounded-xl z-10 backdrop-blur-sm lg:hidden`}>
+            <div className={`absolute ${isMenuOpen ? 'right-4 top-16' : '-top-40 right-4'} transition-all duration-700  bg-[#009688]/20 p-2 rounded-xl z-10 backdrop-blur-sm md:hidden`}>
                 <ul>{links}</ul>
             </div>
         </nav>

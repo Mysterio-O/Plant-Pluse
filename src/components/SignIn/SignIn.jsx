@@ -1,13 +1,62 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { FaWpexplorer } from 'react-icons/fa';
 import { MdFlipToBack } from 'react-icons/md';
-import { Link, useLocation } from 'react-router';
+import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
+import { Link, useLocation, useNavigate } from 'react-router';
+import { AuthContext } from '../../Provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const SignIn = () => {
 
+    const { signInUser } = useContext(AuthContext);
 
     const location = useLocation();
-    console.log(location);
+    const navigate = useNavigate();
+    // console.log(location);
+
+    const [isEyeOpen, setIsEyeOpen] = useState(false);
+    const [isErr, setIsErr] = useState(false);
+
+
+
+    const handleLogin = e => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        //signing in user
+        signInUser(email, password).then(userCredential => {
+            const user = userCredential.user;
+            console.log('user logged in successfully', user);
+            Swal.fire({
+                title: 'Welcome Back!',
+                text: 'You have successfully signed in.',
+                icon: 'success',
+                background: '#0a3b59',
+                color: '#ffffff',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 2000,
+                customClass: {
+                    popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                    title: 'text-white font-semibold',
+                    content: 'text-white',
+                }
+            });
+
+            navigate(`${location.state ? location.state : '/'}`)
+        }).catch(err => {
+            setIsErr(true)
+            const errCode = err.code;
+            const errMessage = err.message;
+            console.error(errCode, errMessage);
+        })
+    }
+
+
     return (
         <div className='min-h-screen bg-[url(/signin-bg.png)]'>
 
@@ -37,14 +86,26 @@ const SignIn = () => {
                 {/* second container */}
                 <div className='md:col-span-4 lg:col-span-3 backdrop-blur-md bg-white/10 rounded-xl p-8 shadow-lg w-full max-w-md text-white'>
                     <h2 className="text-2xl font-bold mb-4 text-center">Get Started</h2>
-                    <form>
+                    <form onSubmit={handleLogin}>
                         <input name="email" type="email" placeholder="Email" className="input input-bordered w-full mb-4 bg-white/20 text-white placeholder-white" />
-                        <input name='password' type="password" placeholder="Password" className="input input-bordered w-full mb-6 bg-white/20 text-white placeholder-white" />
+
+                        <div>
+                            <input name='password' type={`${isEyeOpen ? 'text' : 'password'}`} placeholder="Password" className="input input-bordered w-full mb-6 bg-white/20 text-white placeholder-white" />
+                            <span
+                                onClick={() => setIsEyeOpen(!isEyeOpen)}
+                                className='absolute right-10 top-37 cursor-pointer'
+                            >
+                                {
+                                    !isEyeOpen ? <RxEyeClosed /> : <RxEyeOpen />
+                                }
+                            </span>
+                        </div>
+
                         <button type='submit' className="btn btn-success w-full mb-4">Sign In</button>
 
-                        {/* {
+                        {
                             isErr && <p className='text-red-600 text-center'>Invalid email or password</p>
-                        } */}
+                        }
 
                     </form>
                     <div className="divider text-white">Or Sign in with</div>
@@ -52,7 +113,7 @@ const SignIn = () => {
                     {/* social button container */}
                     <div className='flex flex-col gap-4 items-center justify-center mt-5 px-4'>
                         <button
-                            
+
                             className="border border-[#e5eaf2] rounded-md py-2 px-4 flex items-center gap-[10px] text-[1rem] text-[#424242] hover:bg-gray-50 transition-all duration-200 w-full cursor-pointer">
                             <img src="https://i.ibb.co/dQMmB8h/download-4-removebg-preview-1.png" alt="google logo"
                                 className="w-[23px]" />

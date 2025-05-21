@@ -45,7 +45,9 @@ const Router = createBrowserRouter([
     },
     {
         path: '/plantDetails/:id',
-        Component: PlantDetails
+        element: <PrivateRoute>
+            <PlantDetails/>
+        </PrivateRoute>
     }
 ])
 
