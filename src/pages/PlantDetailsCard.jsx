@@ -1,0 +1,105 @@
+import React from 'react';
+import { Link } from 'react-router';
+
+const PlantDetailsCard = ({ plant }) => {
+    console.log(plant)
+
+
+    const customStyles = `
+  .plant-details-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+  }
+  .plant-details-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  }
+  .plant-image {
+    transition: transform 0.5s ease;
+  }
+  .plant-details-card:hover .plant-image {
+    transform: scale(1.05);
+  }
+  .care-level-easy {
+    background: linear-gradient(45deg, #10B981, #34D399);
+  }
+  .care-level-moderate {
+    background: linear-gradient(45deg, #FBBF24, #F59E0B);
+  }
+  .care-level-difficult {
+    background: linear-gradient(45deg, #EF4444, #F87171);
+  }
+  .action-btn {
+    background: linear-gradient(45deg, #10B981, #34D399);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .action-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+  .text-glow {
+    text-shadow: 0 0 10px rgba(255, 202, 40, 0.7);
+  }
+`;
+
+    return (
+        <section className="py-16 bg-[#E6F4EA]">
+            <style>{customStyles}</style>
+            <div className="container mx-auto px-4">
+                <div className="max-w-2xl mx-auto">
+                    <div className="plant-details-card rounded-xl overflow-hidden p-8">
+                        <div className="flex flex-col md:flex-row gap-8">
+                            <div className="flex-shrink-0">
+                                <img
+                                    src={plant?.image}
+                                    alt={plant?.name}
+                                    className="plant-image w-full md:w-64 h-64 object-cover rounded-xl"
+                                />
+                            </div>
+                            <div className="flex-1">
+                                <h2 className="text-4xl font-bold text-[#263238] rancho-regular text-glow">
+                                    {plant?.name}
+                                </h2>
+                                <p className="text-lg text-gray-600 mt-2">{plant?.category}</p>
+                                <div className="mt-4">
+                                    <span
+                                        className={`inline-block text-[#FFCA28] text-sm font-medium px-4 py-2 rounded-full care-level-${plant?.careLevel}`}
+                                    >
+                                        {plant?.careLevel}
+                                    </span>
+                                </div>
+                                <p className="text-gray-700 mt-4 text-lg">{plant?.description}</p>
+                                <div className="mt-6 space-y-3">
+                                    <p className="text-gray-600">
+                                        <span className="font-medium">Watering Frequency:</span> {plant?.wateringFrequency}
+                                    </p>
+                                    <p className="text-gray-600">
+                                        <span className="font-medium">Last Watered:</span> {plant?.lastWateredDate}
+                                    </p>
+                                    <p className="text-gray-600">
+                                        <span className="font-medium">Next Watering:</span> {plant?.nextWateringDate}
+                                    </p>
+                                    <p className="text-gray-600">
+                                        <span className="font-medium">Health Status:</span> {plant?.healthStatus}
+                                    </p>
+                                </div>
+                                <div className="mt-6 flex gap-4">
+                                    <Link to="/">
+                                        <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
+                                            Back to Home
+                                        </button>
+                                    </Link>
+                                    <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
+                                        Log Care
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default PlantDetailsCard;
