@@ -9,6 +9,7 @@ import SignIn from "../components/SignIn/SignIn";
 import Page404 from "../pages/Page404";
 import PlantDetails from "../components/PlantDetails/PlantDetails"
 import PrivateRoute from "../Provider/PrivateRoute";
+import AboutUs from "../components/AboutUs/AboutUs";
 
 const Router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ const Router = createBrowserRouter([
         element: <PrivateRoute>
             <PlantDetails/>
         </PrivateRoute>
+    },
+    {
+        path: '/about_us',
+        Component: AboutUs
     }
 ])
 

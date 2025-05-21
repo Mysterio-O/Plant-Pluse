@@ -21,7 +21,7 @@ const Home = () => {
                 <SeasonalPlant/>
             </section>
 
-            <footer>
+            <footer id='footer'>
                 <Footer/>
             </footer>
         </div>
