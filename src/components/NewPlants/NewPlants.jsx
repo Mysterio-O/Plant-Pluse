@@ -56,19 +56,34 @@ const NewPlants = () => {
        transform: translateY(-3px);
        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
      }
+     .dark .care-level-easy {
+        color: #34D399;
+        border: 2px solid #34D399;
+     }
+     .dark .care-level-moderate {
+        color: #FCD34D;
+        border: 2px solid #FCD34D;
+     }
+     .dark .care-level-difficult {
+        color: #F87171;
+        border: 2px solid #F87171;
+     }
+     .dark .view-details-btn {
+        background: linear-gradient(45deg, #059669, #10B981);
+     }
     `;
 
     return (
         <div>
-            <section className="py-16 bg-[#E6F4EA]">
+            <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
                 <style>{customStyles}</style>
                 <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-center text-[#263238] mb-12 rancho-regular text-shadow-md">
+                    <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
                         🌿 Explore Our Plant Collection
                     </h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         {
-                            plants.map(plant => <PlantCard key={plant.id} plant={plant}/>)
+                            plants.map(plant => <PlantCard key={plant.id} plant={plant} />)
                         }
                     </div>
                 </div>
