@@ -1,22 +1,135 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { GiTreeBranch } from 'react-icons/gi';
 import { MdFlipToBack } from 'react-icons/md';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
+import Swal from 'sweetalert2';
 
 const Register = () => {
-    const {googleLogin} = useContext(AuthContext);
+    const { googleLogin, signUpNewUser, setProfileInfo } = useContext(AuthContext);
+    const navigate = useNavigate();
 
+    const [passErr, setPassErr] = useState('');
+    const [confirmPassErr, setConfirmPassErr] = useState(false);
+
+    const [pass, setPass] = useState('');
+    const [confirmPass, setConfirmPass] = useState('');
+
+    const [isEyeOpen, setIsEyeOpen] = useState(false);
 
     const handleGoogle = () => {
         googleLogin().then(result => {
             const user = result.user;
             console.log('user logged in with google', user);
+            Swal.fire({
+                title: 'User Created!',
+                text: 'Your account was successfully created.',
+                icon: 'success',
+                background: 'rgba(10, 59, 89, 0.7)',
+                color: '#ffffff',
+                position: 'center',
+                showConfirmButton: true,
+                confirmButtonText: 'Explore',
+                confirmButtonColor: '#34D399', // Tailwind green-400
+                customClass: {
+                    popup: 'text-sm md:text-base lg:text-lg rounded-2xl p-6 shadow-2xl backdrop-blur-md',
+                    title: 'text-white font-bold',
+                    content: 'text-white',
+                    confirmButton: 'text-black font-semibold px-6 py-2 rounded-md',
+                }
+            });
+            navigate('/');
         }).catch(err => {
             console.log(err.code, err.message);
         })
     }
-    
+
+
+
+    // console.log(pass)
+    // console.log(confirmPass)
+    useEffect(() => {
+        if (pass !== confirmPass) {
+            setConfirmPassErr(true);
+        }
+        else {
+            setConfirmPassErr(false)
+        }
+    }, [confirmPass, pass])
+
+
+    const handleRegister = e => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const photo = form.photo.value;
+        const email = form.email.value;
+        const password = form.password.value;
+        const confirmPassword = form.confirmPassword.value;
+        // console.log(name, photo, email, password, confirmPassword);
+        // console.log(typeof password);
+
+        const profileInfoObj = { displayName: name, photoURL: photo };
+
+
+        if (!/.{6,}/.test(password)) {
+            setPassErr("Password must be atleast 6 characters");
+            return;
+        }
+        else if (!/[a-z]/.test(password)) {
+            setPassErr("Password must contain at least 1 lowercase letter");
+            return;
+        }
+        else if (!/[A-Z]/.test(password)) {
+            setPassErr('Password must contain at least one uppercase letter');
+            return;
+        }
+        else {
+            setPassErr('');
+        }
+
+
+        if (password !== confirmPassword) return
+
+
+
+        //creating user with email and password
+        signUpNewUser(email, password).then(userCredential => {
+            const user = userCredential.user;
+            console.log('user successfully created account', user);
+
+            //setting name and photo
+            setProfileInfo(profileInfoObj).then(() => {
+                Swal.fire({
+                    title: 'User Created!',
+                    text: 'Your account was successfully created.',
+                    icon: 'success',
+                    background: 'rgba(10, 59, 89, 0.7)',
+                    color: '#ffffff',
+                    position: 'center',
+                    showConfirmButton: true,
+                    confirmButtonText: 'Explore',
+                    confirmButtonColor: '#34D399',
+                    customClass: {
+                        popup: 'text-sm md:text-base lg:text-lg rounded-2xl p-6 shadow-2xl backdrop-blur-md',
+                        title: 'text-white font-bold',
+                        content: 'text-white',
+                        confirmButton: 'text-black font-semibold px-6 py-2 rounded-md',
+                    }
+                });
+                navigate('/');
+            }).catch(err => {
+                console.error(err.code, err.message);
+            })
+        }).catch(err => {
+            console.error(err.code, err.message);
+        })
+
+    }
+
+
+
     return (
         <div className='min-h-screen bg-[url(/auth-bg.png)]'>
 
@@ -29,14 +142,44 @@ const Register = () => {
                     <h2 className="text-3xl font-bold mb-2 text-center">Sign Up to your new account</h2>
 
 
-                    <form className="space-y-4">
+                    <form onSubmit={handleRegister} className="space-y-4">
                         <input name='name' type="text" placeholder="Name" className="input input-bordered w-full bg-white/20 text-white placeholder-white/70" required />
+
                         <input name='photo' type="text" placeholder="Photo URL" className="input input-bordered w-full bg-white/20 text-white placeholder-white/70" required />
+
                         <input name='email' type="email" placeholder="Email" className="input input-bordered w-full bg-white/20 text-white placeholder-white/70" required />
-                        <input name='password' type="password" placeholder="Password" className="input input-bordered w-full bg-white/20 text-white placeholder-white/70" required />
+
+                        <div>
+                            <input onChange={e => setPass(e.target.value)} name='password' type={`${isEyeOpen ? 'text' : 'password'}`} placeholder="Password" className="input relative input-bordered w-full bg-white/20 text-white placeholder-white/70" required />
+                            <span
+                                onClick={() => setIsEyeOpen(!isEyeOpen)}
+                                className='absolute right-10 top-73 cursor-pointer'>
+                                {
+                                    !isEyeOpen ? <RxEyeClosed /> : <RxEyeOpen />
+                                }
+                            </span>
+
+                        </div>
+
+                        <div>
+                            <input onChange={(e => setConfirmPass(e.target.value))} name='confirmPassword' type={`${isEyeOpen ? 'text' : 'password'}`} placeholder="Confirm Password" className={`input relative input-bordered w-full bg-white/20 text-white placeholder-white/70 ${confirmPassErr && 'input-error placeholder-red-500'}`} required />
+
+                            <span
+                                onClick={() => setIsEyeOpen(!isEyeOpen)}
+                                className='absolute right-10 top-87 cursor-pointer'>
+                                {
+                                    !isEyeOpen ? <RxEyeClosed /> : <RxEyeOpen />
+                                }
+                            </span>
+                        </div>
+
+                        {
+                            confirmPassErr && <p className='text-red-500 text-center'>Password Doesn't Match</p>
+                        }
+
                         <button type="submit" className="btn btn-success w-full">Sign Up</button>
 
-                        {/* <p className="text-red-500 text-center">{passErr}</p> */}
+                        <p className="text-red-500 text-center">{passErr}</p>
                     </form>
 
                     <div className="divider text-white/60 mt-6">Or Sign up with</div>
@@ -91,7 +234,7 @@ const Register = () => {
                     <div className='max-w-[400px] lg:max-w-[550px] p-3'>
                         <h2 className='text-3xl text-center font-bold mb-4  items-center text-green-400 relative'>🌵 “Plant Smarter. Care Better. Live Greener.
                             <span className='absolute text-black'>
-                                <GiTreeBranch size={36} className='text-green-500'/>
+                                <GiTreeBranch size={36} className='text-green-500' />
                             </span>
                         </h2>
                         <img src='/register.webp' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />

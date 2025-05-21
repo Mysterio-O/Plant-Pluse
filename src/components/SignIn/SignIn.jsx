@@ -1,9 +1,13 @@
 import React from 'react';
 import { FaWpexplorer } from 'react-icons/fa';
 import { MdFlipToBack } from 'react-icons/md';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 const SignIn = () => {
+
+
+    const location = useLocation();
+    console.log(location);
     return (
         <div className='min-h-screen bg-[url(/signin-bg.png)]'>
 

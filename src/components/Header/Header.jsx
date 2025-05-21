@@ -43,7 +43,7 @@ const Header = () => {
                 {
                     user ? <button
                         onClick={handleLogOut}
-                        className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>LogOut</button>
+                        className='btn btn-outline hover:bg-[#FFCA28] hover:text-white'>LogOut</button>
                         : <div className='space-x-3'>
                             <Link to='/auth/register'>
                                 <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>Register</button>
