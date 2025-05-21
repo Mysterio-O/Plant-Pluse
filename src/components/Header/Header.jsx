@@ -1,11 +1,13 @@
-import React, {  useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ThemeSwitch from '../Theme/ThemeSwitch'
 import { Link, NavLink } from 'react-router';
 import './header.css'
 import { CiMenuKebab } from 'react-icons/ci';
 import { MdOutlineCancel } from 'react-icons/md';
+import { AuthContext } from '../../Provider/AuthProvider';
 
 const Header = () => {
+    const { user, signOutUser } = useContext(AuthContext);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -17,10 +19,14 @@ const Header = () => {
     </>
 
 
-    const handleMenu = () => {
-        // console.log('clicked')
-        setIsMenuOpen(!isMenuOpen);
+    const handleLogOut = () => {
+        signOutUser().then(() => {
+            console.log('users signed out successful');
+        }).catch(err => {
+            console.error(err.code, err.message);
+        })
     }
+
 
     return (
         <nav className='dark:bg-gray-500 px-4 py-2 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative'>
@@ -34,19 +40,27 @@ const Header = () => {
                 </ul>
             </div>
             <div>
-                <div className='space-x-3'>
-                    <Link to='/auth/register'>
-                        <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>Register</button>
-                    </Link>
-                    <Link to='/auth/login'>
-                        <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>SignIn</button>
-                    </Link>
-                </div>
+                {
+                    user ? <button
+                        onClick={handleLogOut}
+                        className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>LogOut</button>
+                        : <div className='space-x-3'>
+                            <Link to='/auth/register'>
+                                <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>Register</button>
+                            </Link>
+                            <Link to='/auth/login'>
+                                <button className='btn btn-outline hover:bg-[#2E7D32] hover:text-white'>SignIn</button>
+                            </Link>
+                        </div>
+                }
+
+
+
             </div>
             <div className='flex gap-2 items-center flex-row-reverse'>
                 <ThemeSwitch />
                 <div
-                    onClick={handleMenu}
+                    onClick={() => setIsMenuOpen(!isMenuOpen)}
                     className='lg:hidden'>
 
                     {

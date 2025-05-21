@@ -51,6 +51,7 @@ const AuthProvider = ({ children }) => {
         }
     }, [])
 
+    // console.log(user);
 
     const values = {
         signUpNewUser,

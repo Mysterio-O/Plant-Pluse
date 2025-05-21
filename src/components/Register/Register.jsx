@@ -5,8 +5,18 @@ import { Link } from 'react-router';
 import { AuthContext } from '../../Provider/AuthProvider';
 
 const Register = () => {
-    const userData = useContext(AuthContext);
-    console.log(userData)
+    const {googleLogin} = useContext(AuthContext);
+
+
+    const handleGoogle = () => {
+        googleLogin().then(result => {
+            const user = result.user;
+            console.log('user logged in with google', user);
+        }).catch(err => {
+            console.log(err.code, err.message);
+        })
+    }
+    
     return (
         <div className='min-h-screen bg-[url(/auth-bg.png)]'>
 
@@ -36,7 +46,7 @@ const Register = () => {
                     {/* social sign up options */}
                     <div className='flex flex-col gap-4 items-center justify-center mt-5 px-4'>
                         <button
-                            
+                            onClick={handleGoogle}
                             className="border border-[#e5eaf2] rounded-md py-2 px-4 flex items-center gap-[10px] text-[1rem] text-[#424242] hover:bg-gray-50 transition-all duration-200 w-full cursor-pointer">
                             <img src="https://i.ibb.co/dQMmB8h/download-4-removebg-preview-1.png" alt="google logo"
                                 className="w-[23px]" />
