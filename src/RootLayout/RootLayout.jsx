@@ -10,7 +10,7 @@ const RootLayout = () => {
         <ThemeProvider>
             {
                 loading ? <Loader />
-                    : <div className='bg-[#FAFAFA] dark:bg-[#263238] min-h-screen'>
+                    : <div className='bg-[#FAFAFA] dark:bg-[#263238] min-h-screen raleway-regular'>
                         <Header />
                         <Outlet />
                     </div>
