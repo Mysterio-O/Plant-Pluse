@@ -112,7 +112,7 @@ const MyPlants = () => {
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
                             {plants.map((plant) => (
                                 <div
-                                    key={plant.id}
+                                    key={plant._id}
                                     className="relative bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-xl  transition-all duration-300 transform hover:-translate-y-2 animate-slide-up hover:shadow-xl hover:shadow-orange-400 dark:hover:shadow-green-400"
                                 >
                                     <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-green-500 to-teal-500 rounded-t-2xl"></div>
@@ -137,11 +137,13 @@ const MyPlants = () => {
                                     >
                                         Delete Plant
                                     </button>
-                                    <button
-                                        className="btn btn-primary w-full bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 border-none text-white font-semibold hover:animate-pulse hover:shadow-lg hover:shadow-blue-400/50 dark:hover:shadow-cyan-400/50 transition-all duration-300 mt-3"
-                                    >
-                                        Edit Plant
-                                    </button>
+                                    <Link to={`/edit_plant/${plant._id}`}>
+                                        <button
+                                            className="btn btn-primary w-full bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 border-none text-white font-semibold hover:animate-pulse hover:shadow-lg hover:shadow-blue-400/50 dark:hover:shadow-cyan-400/50 transition-all duration-300 mt-3"
+                                        >
+                                            Edit Plant
+                                        </button>
+                                    </Link>
                                 </div>
                             ))}
                         </div>
