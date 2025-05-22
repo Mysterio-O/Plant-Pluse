@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const PlantTable = ({ plant }) => {
-    const { image, name, category, careLevel, wateringFrequency, id, lastWateredDate, nextWateringDate } = plant;
+    const { image, name, category, careLevel, wateringFrequency, _id, lastWateredDate, nextWateringDate } = plant;
     return (
         <tr>
             <td>
@@ -30,7 +30,7 @@ const PlantTable = ({ plant }) => {
             </td>
             <td>{careLevel}</td>
             <th>
-                <Link to={`/plantDetails/${id}`}>
+                <Link to={`/plantDetails/${_id}`}>
                     <button className="btn btn-ghost btn-xs">details</button>
                 </Link>
             </th>

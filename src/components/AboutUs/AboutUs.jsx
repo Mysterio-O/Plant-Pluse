@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const AboutUs = () => {
     return (
-        <section id="about" className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 py-16">
+        <section id="about" className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 py-16 min-h-screen">
             <div className="container mx-auto px-6 lg:px-8">
                 <div className="text-center">
                     <h1 className="text-4xl md:text-5xl font-bold text-green-600 dark:text-green-400 mb-6">About Plant Pulse</h1>

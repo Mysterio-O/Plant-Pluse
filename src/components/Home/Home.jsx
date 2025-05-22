@@ -16,17 +16,17 @@ const Home = () => {
                 <NewPlants />
             </section>
             <section className='mt-16 mb-16 max-w-6xl mx-auto' id='care_section'>
-                <PlantCare/>
-            </section>
-            <section className='max-w-6xl mx-auto'>
-                <SeasonalPlant/>
+                <PlantCare />
             </section>
             <section className='max-w-6xl mx-auto mt-16'>
-                <PlantsMarquee/>
+                <PlantsMarquee />
+            </section>
+            <section className='max-w-6xl mx-auto'>
+                <SeasonalPlant />
             </section>
 
             <footer id='footer'>
-                <Footer/>
+                <Footer />
             </footer>
         </div>
     );

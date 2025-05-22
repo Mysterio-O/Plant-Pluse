@@ -5,20 +5,20 @@ import Loader from '../../pages/Loader';
 
 const PlantDetails = () => {
     const { id } = useParams();
-    const [plants, setPlants] = useState([]);
+    const [plant, setPlant] = useState([]);
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch('/plant.json')
+        fetch(`http://localhost:5000/plants/${id}`)
             .then(res => res.json())
             .then(data => {
-                setPlants(data);
+                setPlant(data);
                 setLoading(false)
                 // console.log(data)
             })
-    }, [])
+    }, [id])
     // console.log(plants, typeof id);
-    const plant = plants.find(p => p.id === parseInt(id));
+    // const plant = plants.find(p => p.id === parseInt(id));
     // console.log(plant)
     return (
         <div>

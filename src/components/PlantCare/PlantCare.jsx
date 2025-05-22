@@ -8,7 +8,7 @@ const PlantCare = () => {
     ];
     return (
         <div className="py-12 px-4 bg-green-50 dark:bg-gray-800 group">
-            <h2 className="text-3xl font-semibold text-center mb-8 group-hover:text-[#FFD700] transition-colors duration-300">Plant Care Tips</h2>
+            <h2 className="text-3xl font-semibold text-center mb-8 group-hover:text-[#FFD700] transition-colors duration-300 text-[#ffd700] lg:text-black">Plant Care Tips</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {tips.map((tip) => (
                     <div

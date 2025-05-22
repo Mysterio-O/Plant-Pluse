@@ -89,7 +89,7 @@ const PlantsMarquee = () => {
     }, []);
 
     return (
-        <div id="plant-marquee" className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-900 dark:to-gray-800 py-12 overflow-hidden rounded-2xl mb-10">
+        <div id="plant-marquee" className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-900 dark:to-gray-800 py-12 overflow-hidden rounded-2xl mb-10 dark:shadow-xl dark:shadow-cyan-500">
             <div className="container mx-auto px-6 lg:px-8">
                 <h2 className="text-3xl md:text-4xl font-bold text-green-600 dark:text-green-400 text-center mb-8">
                     Fascinating Plant Facts

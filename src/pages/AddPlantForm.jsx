@@ -1,27 +1,59 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const AddPlantForm = () => {
+
+    const { user } = useContext(AuthContext);
+    const { displayName, email } = user;
+
+
+
+    const handleAddPlant = e => {
+        e.preventDefault();
+        const form = e.target;
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        console.log(data);
+
+        const plantsData = {...data, displayName, email}
+
+        fetch('http://localhost:5000/plants', {
+            method: "POST",
+            headers: {
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(plantsData)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('data after adding in the database', data)
+            })
+            .catch(err => {
+                console.error(err.code, err.message);
+            })
+            form.reset();
+    }
+
     return (
-        <form>
+        <form onSubmit={handleAddPlant}>
             <div className='grid grid-cols-1 md:grid-cols-2 gap-6 mb-6'>
 
                 {/* image input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Image</label>
-                    <input type="text" name='image' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Image URL" />
+                    <input type="text" name='image' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Image URL" required/>
                 </fieldset>
 
                 {/* name input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Plant Name</label>
-                    <input type="text" name='name' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Plant Name" />
+                    <input type="text" name='name' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Plant Name" required/>
                 </fieldset>
 
                 {/* category input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Category</label>
-                    <select name='category' className="input input-bordered w-full bg-white/20 text-black" required>
-                        <option disabled selected>Select a Category</option>
+                    <select name='category' className="input input-bordered w-full bg-white/20 text-black" defaultValue='Select a Category' required>
                         <option>Flowering Plants</option>
                         <option>Ferns</option>
                         <option>Succulents</option>
@@ -36,8 +68,7 @@ const AddPlantForm = () => {
                 {/* care level input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Care Level</label>
-                    <select name='care' className="input input-bordered w-full bg-white/20 text-black" required>
-                        <option disabled selected>Select Care Level</option>
+                    <select name='careLevel' className="input input-bordered w-full bg-white/20 text-black" defaultValue='Select Care Level' required>
                         <option>Easy</option>
                         <option>Moderate</option>
                         <option>Difficult</option>
@@ -47,26 +78,25 @@ const AddPlantForm = () => {
                 {/* watering frequency input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Watering Frequency</label>
-                    <input type="text" name='frequency' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="e.g. Twice a week" />
+                    <input type="text" name='wateringFrequency' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="e.g. Twice a week" required/>
                 </fieldset>
 
                 {/* last watering date input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Last Watered</label>
-                    <input type="date" name='last_water' className="input input-bordered w-full bg-white/20 text-black placeholder-black" />
+                    <input type="date" name='lastWateredDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required/>
                 </fieldset>
 
                 {/* next watering date input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Next Watering</label>
-                    <input type="date" name='next_water' className="input input-bordered w-full bg-white/20 text-black placeholder-black" />
+                    <input type="date" name='nextWateringDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required/>
                 </fieldset>
 
                 {/* health status input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Health Status</label>
-                    <select name='health' className="input input-bordered w-full bg-white/20 text-black" required>
-                        <option disabled selected>Select Health Status</option>
+                    <select name='healthStatus' className="input input-bordered w-full bg-white/20 text-black" defaultValue='Select Health Status' required>
                         <option>Healthy</option>
                         <option>Slightly Unhealthy / Stressed</option>
                         <option>Diseased</option>
@@ -81,13 +111,13 @@ const AddPlantForm = () => {
                 {/* user email */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">User Email</label>
-                    <input type="text" name='user_email' className="input input-bordered w-full bg-white/20 text-white placeholder-black" readOnly />
+                    <input type="text" name='email' className="input input-bordered w-full bg-white/20 text-white placeholder-black" defaultValue={email} readOnly />
                 </fieldset>
 
                 {/* user name */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">User Name</label>
-                    <input type="text" name='user_name' className="input input-bordered w-full bg-white/20 text-white placeholder-black" readOnly />
+                    <input type="text" name='displayName' className="input input-bordered w-full bg-white/20 text-white placeholder-black" defaultValue={displayName} readOnly />
                 </fieldset>
             </div>
 

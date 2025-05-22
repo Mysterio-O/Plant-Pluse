@@ -5,6 +5,8 @@ import './header.css'
 import { CiMenuKebab } from 'react-icons/ci';
 import { MdOutlineCancel } from 'react-icons/md';
 import { AuthContext } from '../../Provider/AuthProvider';
+import { Tooltip } from 'react-tooltip';
+import Swal from 'sweetalert2';
 
 const Header = () => {
     const { user, signOutUser } = useContext(AuthContext);
@@ -12,20 +14,74 @@ const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const links = <>
-        <NavLink to='/'><li className='hover:text-blue-500 text-black transition duration-300'>Home</li></NavLink>
-        <NavLink to='/all_plants'><li className='hover:text-blue-500 transition duration-300 text-black'>All Plants</li></NavLink>
-        <NavLink to='/add_plants'><li className='hover:text-blue-500 text-black transition duration-300'>Add Plants</li></NavLink>
-        <NavLink to='/my_plants'><li className='hover:text-blue-500 text-black transition duration-300'>My Plants</li></NavLink>
+        <NavLink to='/'><li className='hover:text-blue-500  transition duration-300'>Home</li></NavLink>
+        <NavLink to='/all_plants'><li className='hover:text-blue-500 transition duration-300 '>All Plants</li></NavLink>
+        <NavLink to='/add_plants'><li className='hover:text-blue-500  transition duration-300'>Add Plants</li></NavLink>
+        <NavLink to='/my_plants'><li className='hover:text-blue-500  transition duration-300'>My Plants</li></NavLink>
     </>
 
 
     const handleLogOut = () => {
-        signOutUser().then(() => {
-            console.log('users signed out successful');
-        }).catch(err => {
-            console.error(err.code, err.message);
-        })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#1a567a",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Log Out!",
+            cancelButtonText: "Cancel",
+            background: '#0a3b59',
+            color: '#ffffff',
+            customClass: {
+                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+                title: 'text-white font-semibold',
+                content: 'text-white',
+                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
+                cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+            }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                signOutUser().then(() => {
+                    console.log('users signed out successful');
+                    Swal.fire({
+                        title: "Logged Out!",
+                        text: "You have been successfully logged out.",
+                        icon: "success",
+                        background: '#0a3b59',
+                        color: '#ffffff',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#1a567a',
+                        customClass: {
+                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+                            title: 'text-white font-semibold',
+                            content: 'text-white',
+                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+                        }
+                    });
+                }).catch(err => {
+                    console.error(err.code, err.message);
+                    Swal.fire({
+                        title: "Logout Failed",
+                        text: "An error occurred while logging out. Please try again.",
+                        icon: "error",
+                        background: '#0a3b59',
+                        color: '#ffffff',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#1a567a',
+                        customClass: {
+                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+                            title: 'text-white font-semibold',
+                            content: 'text-white',
+                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+                        }
+                    });
+                })
+            }
+        });
     }
+
+    // console.log(user);
 
 
     return (
@@ -44,6 +100,28 @@ const Header = () => {
             </div>
 
             <div className="flex items-center space-x-4">
+                <div data-tooltip-id='name_tooltip'>
+                    <Tooltip
+                        id='name_tooltip'
+                        delayShow={300}
+                        delayHide={200}
+                        place='left'
+                        style={{
+                            backgroundColor: 'blue',
+                            color: 'white',
+                            fontWeight: 'bold',
+                            textShadow: '0 0 5px rgba(0,0,0,0.7)',
+
+                        }}
+                    >
+                        {user?.displayName}
+                        <br />
+                        {user?.email}
+                    </Tooltip>
+                    {
+                        user && <img src={user?.photoURL} alt="" className='w-12 h-12 bg-cover rounded-full bg-black p-2 cursor-zoom-in' />
+                    }
+                </div>
                 {user ? (
                     <button
                         onClick={handleLogOut}

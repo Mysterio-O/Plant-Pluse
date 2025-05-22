@@ -15,7 +15,7 @@ const SignIn = () => {
     // console.log(location);
 
     const [isEyeOpen, setIsEyeOpen] = useState(false);
-    const [isErr, setIsErr] = useState(false);
+    // const [isErr, setIsErr] = useState(false);
 
 
 
@@ -49,10 +49,24 @@ const SignIn = () => {
 
             navigate(`${location.state ? location.state : '/'}`)
         }).catch(err => {
-            setIsErr(true)
             const errCode = err.code;
             const errMessage = err.message;
             console.error(errCode, errMessage);
+            Swal.fire({
+                title: 'Login Failed',
+                text: 'Invalid email or password. Please try again.',
+                icon: 'error',
+                background: '#0a3b59',
+                color: '#ffffff',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#1a567a',
+                customClass: {
+                    popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                    title: 'text-white font-semibold',
+                    content: 'text-white',
+                    confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                }
+            });
         })
     }
 
@@ -103,9 +117,9 @@ const SignIn = () => {
 
                         <button type='submit' className="btn btn-success w-full mb-4">Sign In</button>
 
-                        {
+                        {/* {
                             isErr && <p className='text-red-600 text-center'>Invalid email or password</p>
-                        }
+                        } */}
 
                     </form>
                     <div className="divider text-white">Or Sign in with</div>

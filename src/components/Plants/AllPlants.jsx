@@ -6,7 +6,7 @@ const AllPlants = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch('/plant.json').then(res => res.json()).then(data => {
+        fetch('http://localhost:5000/plants').then(res => res.json()).then(data => {
             console.log(data)
             setPlants(data)
             setLoading(false)
@@ -32,7 +32,7 @@ const AllPlants = () => {
                             <tbody>
                                 {/* row 1 */}
                                 {
-                                    plants.map(plant => <PlantTable key={plant.id} plant={plant} />)
+                                    plants.map(plant => <PlantTable key={plant._id} plant={plant} />)
                                 }
 
                             </tbody>
