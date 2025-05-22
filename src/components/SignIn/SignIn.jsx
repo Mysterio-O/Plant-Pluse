@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 
 const SignIn = () => {
 
-    const { signInUser } = useContext(AuthContext);
+    const { signInUser, googleLogin } = useContext(AuthContext);
 
     const location = useLocation();
     const navigate = useNavigate();
@@ -71,6 +71,15 @@ const SignIn = () => {
     }
 
 
+    const handleGoogleLogin = () => {
+        googleLogin().then(result => {
+            console.log('user signed in with google', result)
+        }).catch(err => {
+            console.error(err.code, err.message);
+        })
+    }
+
+
     return (
         <div className='min-h-screen bg-[url(/signin-bg.png)]'>
 
@@ -127,7 +136,7 @@ const SignIn = () => {
                     {/* social button container */}
                     <div className='flex flex-col gap-4 items-center justify-center mt-5 px-4'>
                         <button
-
+                            onClick={handleGoogleLogin}
                             className="border border-[#e5eaf2] rounded-md py-2 px-4 flex items-center gap-[10px] text-[1rem] text-[#424242] hover:bg-gray-50 transition-all duration-200 w-full cursor-pointer">
                             <img src="https://i.ibb.co/dQMmB8h/download-4-removebg-preview-1.png" alt="google logo"
                                 className="w-[23px]" />

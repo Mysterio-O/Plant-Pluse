@@ -17,7 +17,7 @@ const Header = () => {
         <NavLink to='/'><li className='hover:text-blue-500  transition duration-300'>Home</li></NavLink>
         <NavLink to='/all_plants'><li className='hover:text-blue-500 transition duration-300 '>All Plants</li></NavLink>
         <NavLink to='/add_plants'><li className='hover:text-blue-500  transition duration-300'>Add Plants</li></NavLink>
-        <NavLink to={`/my_plants/${user?.displayName}`}><li className='hover:text-blue-500  transition duration-300'>My Plants</li></NavLink>
+        <NavLink to={`/my_plants/${user?.email}`}><li className='hover:text-blue-500  transition duration-300'>My Plants</li></NavLink>
     </>
 
 

@@ -1,10 +1,12 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
+import { useNavigate } from 'react-router';
 
 const AddPlantForm = () => {
 
     const { user } = useContext(AuthContext);
     const { displayName, email } = user;
+    const navigate = useNavigate();
 
 
 
@@ -26,7 +28,8 @@ const AddPlantForm = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('data after adding in the database', data)
+                console.log('data after adding in the database', data);
+                navigate(`/my_plants/${email}`)
             })
             .catch(err => {
                 console.error(err.code, err.message);
