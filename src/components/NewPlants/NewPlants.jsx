@@ -5,7 +5,7 @@ const NewPlants = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true)
     useEffect(() => {
-        fetch('/plant.json')
+        fetch('http://localhost:5000/plants')
             .then(res => res.json())
             .then(data => {
                 setPlants(data);
@@ -86,7 +86,7 @@ const NewPlants = () => {
                             <span className="loading loading-ring loading-xl"></span>
                             : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 {
-                                    plants.map(plant => <PlantCard key={plant.id} plant={plant} />)
+                                    plants.map(plant => <PlantCard key={plant._id} plant={plant} />)
                                 }
                             </div>
 

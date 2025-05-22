@@ -25,7 +25,7 @@ const PlantCard = ({ plant }) => {
             <p className="health-status text-gray-600 dark:text-gray-300 text-sm mt-2 opacity-75 text-center">
                 <span className="font-medium">Health:</span> {plant.healthStatus}
             </p>
-            <Link to={`/plantDetails/${plant.id}`}>
+            <Link to={`/plantDetails/${plant._id}`}>
                 <button className="view-details-btn mt-4 w-full text-white font-semibold py-2 rounded-full">
                     View Details
                 </button>

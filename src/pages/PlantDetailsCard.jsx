@@ -54,7 +54,7 @@ const PlantDetailsCard = ({ plant }) => {
 `;
 
     return (
-        <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900">
+        <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900 min-h-screen">
             <style>{customStyles}</style>
             <div className="container mx-auto px-4">
                 <div className="max-w-2xl mx-auto">
@@ -72,11 +72,16 @@ const PlantDetailsCard = ({ plant }) => {
                                     {plant?.name}
                                 </h2>
                                 <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">{plant?.category}</p>
-                                <div className="mt-4">
+                                <div className="mt-4 space-x-3">
                                     <span
                                         className={`inline-block text-white text-sm font-medium px-4 py-2 rounded-full care-level-${plant?.careLevel}`}
                                     >
                                         {plant?.careLevel}
+                                    </span>
+                                    <span
+                                        className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow'
+                                    >
+                                      Added By: {plant?.displayName.toUpperCase()}
                                     </span>
                                 </div>
                                 <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg">{plant?.description}</p>
