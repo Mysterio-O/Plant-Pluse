@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../Provider/AuthProvider';
 import { useNavigate } from 'react-router';
+import Swal from 'sweetalert2';
 
 const AddPlantForm = () => {
 
@@ -17,24 +18,59 @@ const AddPlantForm = () => {
         const data = Object.fromEntries(formData.entries());
         console.log(data);
 
-        const plantsData = {...data, displayName, email}
+        const plantsData = { ...data, displayName, email }
 
         fetch('http://localhost:5000/plants', {
             method: "POST",
             headers: {
-                'content-type':'application/json'
+                'content-type': 'application/json'
             },
             body: JSON.stringify(plantsData)
         })
             .then(res => res.json())
             .then(data => {
-                console.log('data after adding in the database', data);
-                navigate(`/my_plants/${email}`)
+                // console.log('data after adding in the database', data);
+                if (data.insertedId) {
+                    form.reset();
+                    Swal.fire({
+                        title: 'Plant Added!',
+                        text: 'Your plant has been successfully added to your collection.',
+                        icon: 'success',
+                        background: '#0a3b59',
+                        color: '#ffffff',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#1a567a',
+                        customClass: {
+                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                            title: 'text-white font-semibold',
+                            content: 'text-white',
+                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                        }
+                    });
+                    navigate(`/my_plants/${email}`)
+                } else {
+                    throw new Error('Failed to add plant');
+                }
             })
             .catch(err => {
                 console.error(err.code, err.message);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to add the plant. Please try again.',
+                    icon: 'error',
+                    background: '#0a3b59',
+                    color: '#ffffff',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#1a567a',
+                    customClass: {
+                        popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                        title: 'text-white font-semibold',
+                        content: 'text-white',
+                        confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                    }
+                });
             })
-            form.reset();
+
     }
 
     return (
@@ -44,13 +80,13 @@ const AddPlantForm = () => {
                 {/* image input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Image</label>
-                    <input type="text" name='image' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Image URL" required/>
+                    <input type="text" name='image' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Image URL" required />
                 </fieldset>
 
                 {/* name input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Plant Name</label>
-                    <input type="text" name='name' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Plant Name" required/>
+                    <input type="text" name='name' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="Enter Plant Name" required />
                 </fieldset>
 
                 {/* category input */}
@@ -81,19 +117,19 @@ const AddPlantForm = () => {
                 {/* watering frequency input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Watering Frequency</label>
-                    <input type="text" name='wateringFrequency' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="e.g. Twice a week" required/>
+                    <input type="text" name='wateringFrequency' className="input input-bordered w-full bg-white/20 text-white placeholder-black" placeholder="e.g. Twice a week" required />
                 </fieldset>
 
                 {/* last watering date input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Last Watered</label>
-                    <input type="date" name='lastWateredDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required/>
+                    <input type="date" name='lastWateredDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required />
                 </fieldset>
 
                 {/* next watering date input */}
                 <fieldset className="fieldset border-base-300 rounded-xl px-3 py-2 border">
                     <label className="label text-[#FAFAFA]">Next Watering</label>
-                    <input type="date" name='nextWateringDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required/>
+                    <input type="date" name='nextWateringDate' className="input input-bordered w-full bg-white/20 text-black placeholder-black" required />
                 </fieldset>
 
                 {/* health status input */}

@@ -4,6 +4,7 @@ import { FaLeaf } from 'react-icons/fa';
 import { Link } from 'react-router';
 import Loader from '../../pages/Loader';
 import EmptyPage from '../../pages/EmptyPage';
+import Swal from 'sweetalert2';
 
 const MyPlants = () => {
     const { user } = useContext(AuthContext);
@@ -19,6 +20,21 @@ const MyPlants = () => {
             .catch(err => {
                 console.error(err.code, err.message)
                 setLoading(false)
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to load plants. Please try again.',
+                    icon: 'error',
+                    background: '#0a3b59',
+                    color: '#ffffff',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#1a567a',
+                    customClass: {
+                        popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                        title: 'text-white font-semibold',
+                        content: 'text-white',
+                        confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                    }
+                });
             })
     }, [user]);
 
@@ -29,18 +45,50 @@ const MyPlants = () => {
         fetch(`http://localhost:5000/plants/${id}`, {
             method: 'DELETE'
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log('deleted successfully', data);
-            const remainingPlants = plants.filter(plant => plant._id !== id);
-            setPlants(remainingPlants);
-            setLoading(false
-                
-            )
-        })
-        .catch(err => {
-            console.error(err.code, err.message);
-        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    // console.log('deleted successfully', data);
+                    const remainingPlants = plants.filter(plant => plant._id !== id);
+                    setPlants(remainingPlants);
+                    setLoading(false)
+                    Swal.fire({
+                        title: 'Deleted!',
+                        text: 'Your plant has been removed successfully.',
+                        icon: 'success',
+                        background: '#0a3b59',
+                        color: '#ffffff',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#1a567a',
+                        customClass: {
+                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                            title: 'text-white font-semibold',
+                            content: 'text-white',
+                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                        }
+                    });
+                } else {
+                    throw new Error('Deletion failed');
+                }
+            })
+            .catch(err => {
+                console.error(err.code, err.message);
+                Swal.fire({
+                    title: 'Error',
+                    text: 'Failed to delete the plant. Please try again.',
+                    icon: 'error',
+                    background: '#0a3b59',
+                    color: '#ffffff',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#1a567a',
+                    customClass: {
+                        popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                        title: 'text-white font-semibold',
+                        content: 'text-white',
+                        confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                    }
+                });
+            })
     }
 
 
@@ -79,14 +127,20 @@ const MyPlants = () => {
                                     <p className="text-gray-600 dark:text-gray-300">Category: {plant.category}</p>
                                     <p className="text-gray-600 dark:text-gray-300 mb-4">Care Level: {plant.careLevel}</p>
                                     <Link to={`/plantDetails/${plant._id}`}>
-                                        <button className="btn btn-primary w-full bg-gradient-to-r from-green-500 to-teal-500 dark:from-green-400 dark:to-teal-400 border-none text-white font-semibold hover:from-green-600 hover:to-teal-600 transition-all duration-300">
-                                            View Details
+                                        <button className="btn btn-primary w-full bg-gradient-to-r from-green-600 to-teal-500 dark:from-green-500 dark:to-teal-400 border-none text-white font-semibold hover:scale-105 hover:shadow-lg hover:shadow-green-400/50 dark:hover:shadow-teal-400/50 transition-all duration-300 flex items-center justify-center gap-2">
+                                            <FaLeaf className="text-lg" /> View Details
                                         </button>
                                     </Link>
                                     <button
-                                    onClick={()=> handleDelete(plant._id)}
-                                    className="btn btn-primary w-full bg-gradient-to-r from-red-500 to-yellow-500 dark:from-red-400 dark:to-yellow-400 border-none text-white font-semibold hover:from-green-600 hover:to-red-600 transition-all duration-300 mt-3">
+                                        onClick={() => handleDelete(plant._id)}
+                                        className="btn btn-primary w-full bg-gradient-to-r from-red-500 to-orange-500 dark:from-red-400 dark:to-orange-400 border-none text-white font-semibold hover:animate-shake hover:shadow-lg hover:shadow-red-400/50 dark:hover:shadow-orange-400/50 transition-all duration-300 mt-3"
+                                    >
                                         Delete Plant
+                                    </button>
+                                    <button
+                                        className="btn btn-primary w-full bg-gradient-to-r from-blue-500 to-cyan-500 dark:from-blue-400 dark:to-cyan-400 border-none text-white font-semibold hover:animate-pulse hover:shadow-lg hover:shadow-blue-400/50 dark:hover:shadow-cyan-400/50 transition-all duration-300 mt-3"
+                                    >
+                                        Edit Plant
                                     </button>
                                 </div>
                             ))}
