@@ -1,8 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const PlantDetailsCard = ({ plant }) => {
-  console.log(plant)
+
+  const navigate = useNavigate();
+  // console.log(plant)
+
+  const handleBackToHome = ()=> {
+    navigate('/', {state: {scrollTo: 'new_plants'}});
+  }
 
 
   const customStyles = `
@@ -97,12 +103,12 @@ const PlantDetailsCard = ({ plant }) => {
                     <span className="font-medium">Health Status:</span> {plant?.healthStatus}
                   </p>
                 </div>
-                <div className="mt-6 flex gap-4">
-                  <Link to="/">
-                    <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
-                      Back to Home
-                    </button>
-                  </Link>
+                <div 
+                onClick={handleBackToHome}
+                className="mt-6 flex gap-4">
+                  <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
+                    Back to Home
+                  </button>
                   <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
                     Log Care
                   </button>

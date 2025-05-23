@@ -11,6 +11,7 @@ import PlantDetails from "../components/PlantDetails/PlantDetails"
 import PrivateRoute from "../Provider/PrivateRoute";
 import AboutUs from "../components/AboutUs/AboutUs";
 import EditPlant from "../components/EditPlant/EditPlant";
+import ContactUs from "../components/ContactUs/ContactUs";
 
 const Router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const Router = createBrowserRouter([
     {
         path: '/about_us',
         Component: AboutUs
+    },
+    {
+        path: '/contact_us',
+        Component: ContactUs
     }
 ])
 

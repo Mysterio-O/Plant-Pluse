@@ -20,7 +20,7 @@ const AddPlantForm = () => {
 
         const plantsData = { ...data, displayName, email }
 
-        fetch('http://localhost:5000/plants', {
+        fetch('https://assignment-010-server.vercel.app/plants', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

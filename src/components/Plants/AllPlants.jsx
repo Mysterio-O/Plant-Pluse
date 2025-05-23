@@ -14,7 +14,7 @@ const AllPlants = () => {
     const [isSortOpen, setIsSortOpen] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/plants?sortParam=${sort}`).then(res => res.json()).then(data => {
+        fetch(`https://assignment-010-server.vercel.app/plants?sortParam=${sort}`).then(res => res.json()).then(data => {
             console.log(data)
             setPlants(data)
             setLoading(false)

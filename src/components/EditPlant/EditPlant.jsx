@@ -18,7 +18,7 @@ const EditPlant = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/plants/${id}`)
+        fetch(`https://assignment-010-server.vercel.app/plants/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log('data to edit', data);

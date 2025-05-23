@@ -1,12 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Banner from '../Banner/Banner';
 import NewPlants from '../NewPlants/NewPlants';
 import PlantCare from '../PlantCare/PlantCare';
 import SeasonalPlant from '../SeasonalPlant/SeasonalPlant';
 import Footer from '../Footer/Footer';
 import PlantsMarquee from '../PlantsMarquee/PlantsMarquee';
+import { useLocation } from 'react-router';
 
 const Home = () => {
+
+    const location = useLocation()
+
+    useEffect(() => {
+        if (location.state?.scrollTo === 'new_plants') {
+            const newPlantSection = document.getElementById('new_plants');
+            if (newPlantSection) {
+                newPlantSection.scrollIntoView({ behavior: 'smooth' })
+            }
+        };
+
+    }, [location])
+
     return (
         <div className=' mt-10'>
             <section className="banner max-w-6xl mx-auto">

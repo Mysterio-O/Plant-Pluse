@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import PlantCard from '../../pages/PlantCard';
-
 const NewPlants = () => {
-    const [plants, setPlants] = useState([]);
-    const [loading, setLoading] = useState(true)
-    useEffect(() => {
-        fetch('http://localhost:5000/plants')
-            .then(res => res.json())
-            .then(data => {
-                setPlants(data);
-                setLoading(false);
-            })
-    }, []);
+
+  const [plants, setPlants] = useState([]);
+  const [loading, setLoading] = useState(true)
+  useEffect(() => {
+    fetch('https://assignment-010-server.vercel.app/plants')
+      .then(res => res.json())
+      .then(data => {
+        setPlants(data);
+        setLoading(false);
+      })
+  }, []);
+
+ 
 
 
-    const customStyles = `
+  const customStyles = `
     .plant-card {
        transition: transform 0.4s ease, box-shadow 0.4s ease;
        background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
@@ -73,28 +75,28 @@ const NewPlants = () => {
      }
     `;
 
-    return (
-        <div>
-            <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
-                <style>{customStyles}</style>
-                <div className="container mx-auto px-4">
-                    <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
-                        🌿 Explore Our Plant Collection
-                    </h2>
-                    {
-                        loading ?
-                            <span className="loading loading-ring loading-xl"></span>
-                            : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {
-                                    plants.map(plant => <PlantCard key={plant._id} plant={plant} />)
-                                }
-                            </div>
+  return (
+    <div>
+      <section id='new_plants' className="py-16 bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
+        <style>{customStyles}</style>
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
+            🌿 Explore Our Plant Collection
+          </h2>
+          {
+            loading ?
+              <span className="loading loading-ring loading-xl"></span>
+              : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {
+                  plants.map(plant => <PlantCard key={plant._id} plant={plant} />)
+                }
+              </div>
 
-                    }
-                </div>
-            </section>
+          }
         </div>
-    );
+      </section>
+    </div>
+  );
 };
 
 export default NewPlants;

@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 const Footer = () => {
     return (
-        <div className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 py-12">
+        <div id='footer' className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 py-12">
             <div className="container mx-auto px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand Section */}
@@ -23,7 +23,9 @@ const Footer = () => {
                             </Link>
                             <li><a href="#new_plants" className="hover:text-green-400 transition-colors">Plant Catalog</a></li>
                             <li><a href="#care_section" className="hover:text-green-400 transition-colors">Care Guides</a></li>
-                            <li><a href="/contact" className="hover:text-green-400 transition-colors">Contact</a></li>
+                            <Link to='/contact_us'>
+                                <li><a className="hover:text-green-400 transition-colors">Contact</a></li>
+                            </Link>
                         </ul>
                     </div>
 

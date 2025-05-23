@@ -11,7 +11,7 @@ const MyPlants = () => {
     const [plants, setPlants] = useState([]);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
-        fetch(`http://localhost:5000/plants_added/${user?.email}`)
+        fetch(`https://assignment-010-server.vercel.app/plants_added/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setPlants(data);
@@ -63,7 +63,7 @@ const MyPlants = () => {
         }).then(result => {
             if (result.isConfirmed) {
                 setLoading(true)
-                fetch(`http://localhost:5000/plants/${id}`, {
+                fetch(`https://assignment-010-server.vercel.app/plants/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
