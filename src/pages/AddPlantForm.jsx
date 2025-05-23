@@ -94,6 +94,7 @@ const AddPlantForm = () => {
                     <label className="label text-[#FAFAFA]">Category</label>
                     <select name='category' className="input input-bordered w-full bg-white/20 text-black" defaultValue='Select a Category' required>
                         <option>Flowering Plants</option>
+                        <option>Low Light Plants</option>
                         <option>Ferns</option>
                         <option>Succulents</option>
                         <option>Conifers / Gymnosperms</option>

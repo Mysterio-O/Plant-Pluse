@@ -114,6 +114,7 @@ const EditPlantForm = ({ plant, isOpen }) => {
                         required
                     >
                         <option>Flowering Plants</option>
+                        <option>Low Light Plants</option>
                         <option>Ferns</option>
                         <option>Succulents</option>
                         <option>Conifers / Gymnosperms</option>
