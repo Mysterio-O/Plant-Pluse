@@ -8,7 +8,9 @@ const PlantCare = () => {
     ];
     return (
         <div className="py-12 px-4 bg-green-50 dark:bg-gray-800 group lg:animate-pulse hover:animate-none">
-            <h2 className="text-3xl font-semibold text-center mb-8 group-hover:text-[#FFD700] transition-colors duration-300 text-[#ffd700] lg:text-black group-hover:animate-pulse">Plant Care Tips</h2>
+            <h2 className="text-3xl font-semibold text-center mb-8 group-hover:text-[#FFD700] transition-colors duration-300 text-[#ffd700] lg:text-black group-hover:animate-pulse">
+                Plant Care Tips
+            </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto hover:scale-110 transition-all duration-500 hover:skew-x-6">
                 {tips.map((tip) => (
                     <div

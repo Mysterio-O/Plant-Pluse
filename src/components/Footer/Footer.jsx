@@ -1,7 +1,13 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 
 const Footer = () => {
+
+    const navigate = useNavigate();
+
+    const handleContact = () => {
+        navigate('/about_us')
+    }
     return (
         <div id='footer' className="bg-gradient-to-br from-gray-900 to-gray-800 text-gray-100 py-12">
             <div className="container mx-auto px-6 lg:px-8">
@@ -18,14 +24,10 @@ const Footer = () => {
                     <div>
                         <h3 className="text-lg font-semibold text-gray-100 mb-4">Explore</h3>
                         <ul className="space-y-2 text-gray-400 text-sm">
-                            <Link to="/about_us">
-                                <li className="hover:text-green-400 transition-colors">About Us</li>
-                            </Link>
+                            <li onClick={handleContact}><a className="hover:text-green-400 transition-colors " href="">About Us</a></li>
                             <li><a href="#new_plants" className="hover:text-green-400 transition-colors">Plant Catalog</a></li>
                             <li><a href="#care_section" className="hover:text-green-400 transition-colors">Care Guides</a></li>
-                            <Link to='/contact_us'>
-                                <li><a className="hover:text-green-400 transition-colors">Contact</a></li>
-                            </Link>
+                            <li onClick={()=> navigate('/contact_us')}><a href='' className="hover:text-green-400 transition-colors">Contact</a></li>
                         </ul>
                     </div>
 
