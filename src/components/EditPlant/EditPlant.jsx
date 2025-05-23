@@ -67,7 +67,7 @@ const EditPlant = () => {
             </div>
 
             {
-                loading ? <Loader />
+                loading ? 'Loading...'
                     : <div className={`backdrop-blur-sm bg-white/10 rounded-2xl p-10 shadow-2xl w-full max-w-4xl mt-10 mx-auto ${!isOpen ? 'opacity-0' : 'opacity-100'} transition-all duration-500`} id='edit_form'>
 
                         <EditPlantForm plant={plant} isOpen={isOpen} />

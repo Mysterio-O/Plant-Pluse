@@ -23,10 +23,10 @@ const PlantTable = ({ plant }) => {
             <td>
                 <span className="badge badge-ghost badge-sm">{wateringFrequency}</span>
             </td>
-            <td className='hidden md:block'>
+            <td>
                 {`last watered ${lastWateredDate}`}
                 <br />
-                <span className="badge badge-ghost badge-sm">Next water {nextWateringDate}</span>
+                <span className="md:badge badge-ghost badge-sm">Next water {nextWateringDate}</span>
             </td>
             <td>{careLevel}</td>
             <th>

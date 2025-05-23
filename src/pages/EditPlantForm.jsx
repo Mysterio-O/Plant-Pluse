@@ -116,6 +116,7 @@ const EditPlantForm = ({ plant, isOpen }) => {
                         <option>Flowering Plants</option>
                         <option>Low Light Plants</option>
                         <option>Ferns</option>
+                        <option>Cactus</option>
                         <option>Succulents</option>
                         <option>Conifers / Gymnosperms</option>
                         <option>Herbs</option>
@@ -193,8 +194,11 @@ const EditPlantForm = ({ plant, isOpen }) => {
                         <option>Healthy</option>
                         <option>Slightly Unhealthy / Stressed</option>
                         <option>Diseased</option>
+                        <option>Dry</option>
+                        <option>Needs attention</option>
                         <option>Pest-Infested</option>
                         <option>Nutrient Deficient</option>
+                        <option>Thriving</option>
                         <option>Overwatered</option>
                         <option>Underwatered / Dried Out</option>
                         <option>Dead or Dying</option>
@@ -234,6 +238,7 @@ const EditPlantForm = ({ plant, isOpen }) => {
                     rows={6}
                     defaultValue={description}
                     disabled={!isOpen}
+                    required
                     className="textarea textarea-bordered w-full bg-gray-700/30 text-gray-100 placeholder-gray-400 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-all duration-300"
                 ></textarea>
             </fieldset>

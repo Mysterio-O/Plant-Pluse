@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link, useNavigate } from 'react-router';
+import { AuthContext } from '../Provider/AuthProvider';
 
 const PlantDetailsCard = ({ plant }) => {
 
   const navigate = useNavigate();
   // console.log(plant)
 
-  const handleBackToHome = ()=> {
-    navigate('/', {state: {scrollTo: 'new_plants'}});
+  const handleBackToHome = () => {
+    navigate('/', { state: { scrollTo: 'new_plants' } });
   }
 
 
@@ -83,11 +84,14 @@ const PlantDetailsCard = ({ plant }) => {
                 >
                   {plant?.careLevel}
                 </span>
-                <p
-                  className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow mt-2'
-                >
-                  Added By: {plant?.displayName.toUpperCase()}
-                </p>
+                <div className='flex gap-4'>
+                  <p
+                    className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow mt-2'
+                  >
+                    Added By: {plant?.displayName.toUpperCase()}
+                  </p>
+                  <img className='mask mask-squircle h-18 w-18' src={plant?.userPhoto} alt={`${plant?.displayName}'s photo`} />
+                </div>
                 <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg p-4 border indent-6">_{plant?.description}</p>
                 <div className="mt-6 space-y-3">
                   <p className="text-gray-600 dark:text-gray-300">
@@ -103,9 +107,9 @@ const PlantDetailsCard = ({ plant }) => {
                     <span className="font-medium">Health Status:</span> {plant?.healthStatus}
                   </p>
                 </div>
-                <div 
-                onClick={handleBackToHome}
-                className="mt-6 flex gap-4">
+                <div
+                  onClick={handleBackToHome}
+                  className="mt-6 flex gap-4">
                   <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
                     Back to Home
                   </button>

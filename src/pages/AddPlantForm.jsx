@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const AddPlantForm = () => {
 
     const { user } = useContext(AuthContext);
-    const { displayName, email } = user;
+    const { displayName, email, photoURL } = user;
     const navigate = useNavigate();
 
 
@@ -18,7 +18,7 @@ const AddPlantForm = () => {
         const data = Object.fromEntries(formData.entries());
         // console.log(data);
 
-        const plantsData = { ...data, displayName, email }
+        const plantsData = { ...data, displayName, email, userPhoto:photoURL }
 
         fetch('https://assignment-010-server.vercel.app/plants', {
             method: "POST",
@@ -96,6 +96,7 @@ const AddPlantForm = () => {
                         <option>Flowering Plants</option>
                         <option>Low Light Plants</option>
                         <option>Ferns</option>
+                        <option>Cactus</option>
                         <option>Succulents</option>
                         <option>Conifers / Gymnosperms</option>
                         <option>Herbs</option>
@@ -140,8 +141,11 @@ const AddPlantForm = () => {
                         <option>Healthy</option>
                         <option>Slightly Unhealthy / Stressed</option>
                         <option>Diseased</option>
+                        <option>Dry</option>
+                        <option>Needs attention</option>
                         <option>Pest-Infested</option>
                         <option>Nutrient Deficient</option>
+                        <option>Thriving</option>
                         <option>Overwatered</option>
                         <option>Underwatered / Dried Out</option>
                         <option>Dead or Dying</option>
@@ -169,6 +173,7 @@ const AddPlantForm = () => {
                     rows={6}
                     placeholder='Write a detailed description about your plant...'
                     className='textarea textarea-bordered w-full bg-white/20 text-white placeholder-white'
+                    required
                 ></textarea>
             </fieldset>
 

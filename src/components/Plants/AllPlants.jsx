@@ -87,7 +87,7 @@ const AllPlants = () => {
                                         <tr className='w-full'>
                                             <th>Plant</th>
                                             <th>Watering Frequency</th>
-                                            <th className='hidden md:block'>Watering</th>
+                                            <th>Watering</th>
                                             <th>Care Level</th>
                                             <th>Action</th>
                                         </tr>

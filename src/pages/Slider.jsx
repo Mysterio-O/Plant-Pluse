@@ -74,6 +74,8 @@ const Slider = () => {
                 modules={[Navigation, Pagination, Autoplay]}
                 className="mySwiper"
             >
+
+                {/* slider 1 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/fV8PHGPQ/swiper-bg-1.webp)] bg-cover object-cover rounded-2xl text-[#FFCA28] bg-overlay">
                         <div className="p-20 content-slide">
@@ -83,6 +85,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 2 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/d0HpPTRV/swiper-bg-2.webp)] bg-cover object-cover rounded-2xl text-[#263238] bg-overlay">
                         <div className="pt-30 px-10 text-end space-y-3.5 content-slide">
@@ -95,6 +98,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 3 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/ZRJgcd1T/swiper-bg-3.webp)] bg-cover object-cover rounded-2xl text-[#FFCA28] bg-overlay">
                         <div className="text-start rancho-regular px-10 pt-24 content-slide">
@@ -104,6 +108,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 4 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/Zzz4fpn1/swiper-bg-4.webp)] bg-cover object-cover rounded-2xl text-[#FFCA28] bg-overlay">
                         <div className="text-end p-16 space-y-4 content-slide">
@@ -113,15 +118,17 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 5 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/tpKbh55M/swiper-bg-5.webp)] bg-cover object-cover rounded-2xl text-[#263238] bg-overlay">
                         <div className="text-center p-16 space-y-3 content-slide">
                             <h2 className="text-6xl font-bold text-glow">🧠 Beginner? No Problem!</h2>
-                            <p className="text-lg">Our app makes plant care easy with clear categories and care level labels.</p>
+                            <p className="text-lg text-[#FFCA28]">Our app makes plant care easy with clear categories and care level labels.</p>
                         </div>
                     </div>
                 </SwiperSlide>
 
+                {/* slider 6 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/6c2HgM7x/swiper-bg-6.webp)] bg-cover object-cover rounded-2xl text-[#FFCA28] bg-overlay">
                         <div className="text-start p-16 space-y-3 content-slide">
@@ -131,6 +138,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 7 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/BJtjwXq/swiper-bg-7.webp)] bg-cover object-cover rounded-2xl text-[#263238] bg-overlay">
                         <div className="text-end p-20 content-slide">
@@ -140,6 +148,7 @@ const Slider = () => {
                     </div>
                 </SwiperSlide>
 
+                {/* slider 8 */}
                 <SwiperSlide>
                     <div className="w-full h-[600px] bg-[url(https://i.ibb.co/7xfPY37Q/swiper-bg-8.webp)] bg-cover object-cover rounded-2xl text-[#FFCA28] bg-overlay">
                         <div className="text-center p-20 space-y-3 content-slide">

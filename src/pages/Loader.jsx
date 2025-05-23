@@ -5,7 +5,7 @@ const Loader = () => {
     const items = Array.from({ length: 9 });
 
     return (
-        <div className='h-screen bg-black bg-[url(/loader-bg.png)] flex justify-center items-center'>
+        <div className='h-screen max-w-6xl mx-auto bg-black bg-[url(/loader-bg.png)] flex justify-center items-center'>
             <div className='grid grid-cols-3 grid-rows-3 w-[67.2px] h-[67.2px]'>
                 {items.map((_, index) => (
                     <div
