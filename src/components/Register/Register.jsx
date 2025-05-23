@@ -21,7 +21,7 @@ const Register = () => {
     const handleGoogle = () => {
         googleLogin().then(result => {
             const user = result.user;
-            console.log('user logged in with google', user);
+            // console.log('user logged in with google', user);
             Swal.fire({
                 title: 'User Created!',
                 text: 'Your account was successfully created.',

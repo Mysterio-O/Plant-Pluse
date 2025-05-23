@@ -9,7 +9,7 @@ const SeasonalPlant = () => {
         fetch('/seasonal_pick.json')
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                // console.log(data);
                 setPicks(data);
             })
             .catch(err => {

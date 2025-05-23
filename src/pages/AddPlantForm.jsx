@@ -16,7 +16,7 @@ const AddPlantForm = () => {
         const form = e.target;
         const formData = new FormData(form);
         const data = Object.fromEntries(formData.entries());
-        console.log(data);
+        // console.log(data);
 
         const plantsData = { ...data, displayName, email }
 

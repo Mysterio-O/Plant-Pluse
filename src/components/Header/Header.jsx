@@ -43,7 +43,7 @@ const Header = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 signOutUser().then(() => {
-                    console.log('users signed out successful');
+                    // console.log('users signed out successful');
                     Swal.fire({
                         title: "Logged Out!",
                         text: "You have been successfully logged out.",
@@ -81,7 +81,7 @@ const Header = () => {
         });
     }
 
-    console.log(user);
+    // console.log(user);
 
 
     return (

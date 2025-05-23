@@ -28,13 +28,13 @@ const SignIn = () => {
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
 
         //signing in user
         signInUser(email, password).then(userCredential => {
             const user = userCredential.user;
             setLogging(false)
-            console.log('user logged in successfully', user);
+            // console.log('user logged in successfully', user);
             Swal.fire({
                 title: 'Welcome Back!',
                 text: 'You have successfully signed in.',
@@ -80,7 +80,7 @@ const SignIn = () => {
         setIsLoading(true);
         googleLogin()
             .then(result => {
-                console.log('user signed in with google', result);
+                // console.log('user signed in with google', result);
                 setIsLoading(false);
                 Swal.fire({
                     icon: 'success',

@@ -24,7 +24,7 @@ const AllPlants = () => {
 
 
     const handleSortNext = async () => {
-        console.log('clicked');
+        // console.log('clicked');
         setSort('nextWateringDate');
     }
 
