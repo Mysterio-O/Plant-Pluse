@@ -81,13 +81,13 @@ const Header = () => {
         });
     }
 
-    // console.log(user);
+    console.log(user);
 
 
     return (
         <nav className="dark:bg-gray-700 bg-white px-4 py-3 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative shadow-md transition-colors duration-300">
             <div className="flex gap-3 items-center">
-                <img src="/logo-1.webp" alt="Logo" className="h-14 rounded-full shadow-md" />
+                <img src="https://i.ibb.co/r24MJjCV/logo-1.webp" alt="Logo" className="h-14 rounded-full shadow-md" />
                 <h2 className="text-3xl font-semibold rancho-regular text-gray-800 dark:text-green-300 hidden md:block">
                     Plant_Pulse
                 </h2>

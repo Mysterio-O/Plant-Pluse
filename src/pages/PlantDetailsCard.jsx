@@ -88,7 +88,7 @@ const PlantDetailsCard = ({ plant }) => {
                 >
                   Added By: {plant?.displayName.toUpperCase()}
                 </p>
-                <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg p-4 border">{plant?.description}</p>
+                <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg p-4 border indent-6">_{plant?.description}</p>
                 <div className="mt-6 space-y-3">
                   <p className="text-gray-600 dark:text-gray-300">
                     <span className="font-medium">Watering Frequency:</span> {plant?.wateringFrequency}

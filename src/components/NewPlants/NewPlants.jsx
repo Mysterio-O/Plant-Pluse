@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PlantCard from '../../pages/PlantCard';
+import Loader from '../../pages/Loader';
 const NewPlants = () => {
 
   const [plants, setPlants] = useState([]);
@@ -85,7 +86,7 @@ const NewPlants = () => {
           </h2>
           {
             loading ?
-              <span className="loading loading-ring loading-xl"></span>
+              <Loader/>
               : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                   plants.map(plant => <PlantCard key={plant._id} plant={plant} />)

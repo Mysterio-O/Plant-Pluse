@@ -18,10 +18,13 @@ const SignIn = () => {
     // const [isErr, setIsErr] = useState(false);
     const [isLoading,setIsLoading]=useState(false)
 
+    const [logging,setLogging]=useState(false);
+
 
 
     const handleLogin = e => {
         e.preventDefault();
+        setLogging(true);
         const form = e.target;
         const email = form.email.value;
         const password = form.password.value;
@@ -30,6 +33,7 @@ const SignIn = () => {
         //signing in user
         signInUser(email, password).then(userCredential => {
             const user = userCredential.user;
+            setLogging(false)
             console.log('user logged in successfully', user);
             Swal.fire({
                 title: 'Welcome Back!',
@@ -73,7 +77,7 @@ const SignIn = () => {
 
 
     const handleGoogleLogin = () => {
-        setIsLoading(true); // Show loading state
+        setIsLoading(true);
         googleLogin()
             .then(result => {
                 console.log('user signed in with google', result);
@@ -116,7 +120,7 @@ const SignIn = () => {
 
 
     return (
-        <div className='min-h-screen bg-[url(/signin-bg.png)]'>
+        <div className='min-h-screen bg-[url(https://i.ibb.co/TMYZ2GG2/signin-bg.png)] bg-cover'>
 
             <div className='max-w-6xl mx-auto gap-5 md:grid grid-cols-9 md:pt-20 p-4'>
                 <div className='md:col-span-4 lg:col-span-6 backdrop-blur-md bg-white/10 rounded-xl md:p-8 shadow-lg text-white group mx-auto'>
@@ -126,7 +130,7 @@ const SignIn = () => {
                                 <FaWpexplorer size={38} />
                             </span>
                         </h2>
-                        <img src='/signin.png' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
+                        <img src='https://i.ibb.co/JjZJc9Dn/signin.png' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
                         <p className="text-xl text-center mb-3 mt-6">
                             Don't have an account?
                         </p>
@@ -159,7 +163,11 @@ const SignIn = () => {
                             </span>
                         </div>
 
-                        <button type='submit' className="btn btn-success w-full mb-4">Sign In</button>
+                        <button type='submit' className="btn btn-success w-full mb-4">
+                            {
+                                logging ? 'Loading..' : 'Sign In'
+                            }
+                        </button>
 
                         {/* {
                             isErr && <p className='text-red-600 text-center'>Invalid email or password</p>
@@ -174,8 +182,10 @@ const SignIn = () => {
                             onClick={handleGoogleLogin}
                             className="border border-[#e5eaf2] rounded-md py-2 px-4 flex items-center gap-[10px] text-[1rem] text-[#424242] hover:bg-gray-50 transition-all duration-200 w-full cursor-pointer">
                             <img src="https://i.ibb.co/dQMmB8h/download-4-removebg-preview-1.png" alt="google logo"
-                                className="w-[23px]" />
-                            Sign in with Google
+                                className="w-[23px]"/>
+                            {
+                                isLoading ? 'Loading..' : 'Sign in with Google'
+                            }
                         </button>
 
                         <button

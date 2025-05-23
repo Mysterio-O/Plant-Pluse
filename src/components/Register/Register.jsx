@@ -131,7 +131,7 @@ const Register = () => {
 
 
     return (
-        <div className='min-h-screen bg-[url(/auth-bg.png)]'>
+        <div className='min-h-screen bg-[url(https://i.ibb.co/XfnTWFsx/auth-bg.png)] bg-cover'>
 
             {/* main container */}
             <div className='max-w-6xl mx-auto gap-5 md:grid grid-cols-9 md:pt-20 p-4'>
@@ -237,7 +237,7 @@ const Register = () => {
                                 <GiTreeBranch size={36} className='text-green-500' />
                             </span>
                         </h2>
-                        <img src='/register.webp' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
+                        <img src='https://i.ibb.co/4g4NsPf1/register.webp' alt="" className='bg-cover overflow-hidden w-full md:h-[65%] md:w-[100%] rounded-2xl opacity-50 group-hover:opacity-70' />
                         <p className="text-xl text-center mb-3 mt-6">
                             Already have an account?
                         </p>
