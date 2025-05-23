@@ -97,7 +97,7 @@ const PlantsMarquee = () => {
                 <div className="relative">
                     <div
                         ref={marqueeRef}
-                        className="flex animate-[marquee_90s_linear_infinite] whitespace-nowrap"
+                        className="flex animate-[marquee_130s_linear_infinite] md:animate-[marquee_90s_linear_infinite] whitespace-nowrap"
                         style={{ willChange: 'transform' }}
                     >
                         {/* First set of cards */}

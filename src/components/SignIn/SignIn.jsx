@@ -16,6 +16,7 @@ const SignIn = () => {
 
     const [isEyeOpen, setIsEyeOpen] = useState(false);
     // const [isErr, setIsErr] = useState(false);
+    const [isLoading,setIsLoading]=useState(false)
 
 
 
@@ -72,12 +73,46 @@ const SignIn = () => {
 
 
     const handleGoogleLogin = () => {
-        googleLogin().then(result => {
-            console.log('user signed in with google', result)
-        }).catch(err => {
-            console.error(err.code, err.message);
-        })
-    }
+        setIsLoading(true); // Show loading state
+        googleLogin()
+            .then(result => {
+                console.log('user signed in with google', result);
+                setIsLoading(false);
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success!',
+                    text: 'Successfully signed in with Google!',
+                    timer: 2000, // Auto-close after 2 seconds
+                    timerProgressBar: true,
+                    showConfirmButton: false,
+                    position: 'top-end', // Top-right corner
+                    toast: true, // Toast-style alert
+                    customClass: {
+                        popup: 'swal2-custom-popup', // For custom styling
+                    },
+                }).then(() => {
+                    navigate(`${location.state ? location.state : '/'}`);
+                });
+            })
+            .catch(err => {
+                console.error(err.code, err.message);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Login Failed',
+                    text: `Error: ${err.message}`,
+                    timer: 4000, // Auto-close after 4 seconds
+                    timerProgressBar: true,
+                    showConfirmButton: true,
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#4CAF50', // Green to match watering theme
+                    position: 'top-end',
+                    toast: true,
+                    customClass: {
+                        popup: 'swal2-custom-popup',
+                    },
+                });
+            });
+    };
 
 
     return (

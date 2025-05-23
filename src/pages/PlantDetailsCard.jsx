@@ -2,10 +2,10 @@ import React from 'react';
 import { Link } from 'react-router';
 
 const PlantDetailsCard = ({ plant }) => {
-    console.log(plant)
+  console.log(plant)
 
 
-    const customStyles = `
+  const customStyles = `
   .plant-details-card {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
@@ -53,69 +53,67 @@ const PlantDetailsCard = ({ plant }) => {
   }
 `;
 
-    return (
-        <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900 min-h-screen">
-            <style>{customStyles}</style>
-            <div className="container mx-auto px-4">
-                <div className="max-w-2xl mx-auto">
-                    <div className="plant-details-card rounded-xl overflow-hidden p-8 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-gray-800 dark:to-gray-700">
-                        <div className="flex flex-col md:flex-row gap-8">
-                            <div className="flex-shrink-0">
-                                <img
-                                    src={plant?.image}
-                                    alt={plant?.name}
-                                    className="plant-image w-full md:w-64 h-64 object-cover rounded-xl"
-                                />
-                            </div>
-                            <div className="flex-1">
-                                <h2 className="text-4xl font-bold text-[#263238] dark:text-[#FFCA28] rancho-regular text-glow">
-                                    {plant?.name}
-                                </h2>
-                                <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">{plant?.category}</p>
-                                <div className="mt-4 space-x-3">
-                                    <span
-                                        className={`inline-block text-white text-sm font-medium px-4 py-2 rounded-full care-level-${plant?.careLevel}`}
-                                    >
-                                        {plant?.careLevel}
-                                    </span>
-                                    <span
-                                        className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow'
-                                    >
-                                      Added By: {plant?.displayName.toUpperCase()}
-                                    </span>
-                                </div>
-                                <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg">{plant?.description}</p>
-                                <div className="mt-6 space-y-3">
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        <span className="font-medium">Watering Frequency:</span> {plant?.wateringFrequency}
-                                    </p>
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        <span className="font-medium">Last Watered:</span> {plant?.lastWateredDate}
-                                    </p>
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        <span className="font-medium">Next Watering:</span> {plant?.nextWateringDate}
-                                    </p>
-                                    <p className="text-gray-600 dark:text-gray-300">
-                                        <span className="font-medium">Health Status:</span> {plant?.healthStatus}
-                                    </p>
-                                </div>
-                                <div className="mt-6 flex gap-4">
-                                    <Link to="/">
-                                        <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
-                                            Back to Home
-                                        </button>
-                                    </Link>
-                                    <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
-                                        Log Care
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+  return (
+    <section className="py-16 bg-[#E6F4EA] dark:bg-gray-900 min-h-screen">
+      <style>{customStyles}</style>
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto">
+          <div className="plant-details-card rounded-xl overflow-hidden p-8 bg-gradient-to-br from-green-50 to-emerald-100 dark:from-gray-800 dark:to-gray-700">
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="flex-shrink-0">
+                <img
+                  src={plant?.image}
+                  alt={plant?.name}
+                  className="plant-image w-full md:w-64 h-64 object-cover rounded-xl"
+                />
+              </div>
+              <div className="flex-1">
+                <h2 className="text-4xl font-bold text-[#263238] dark:text-[#FFCA28] rancho-regular text-glow">
+                  {plant?.name}
+                </h2>
+                <p className="text-lg text-gray-600 dark:text-gray-300 mt-2">{plant?.category}</p>
+                <span
+                  className={`inline-block text-white text-sm font-medium px-4 py-2 rounded-full care-level-${plant?.careLevel}`}
+                >
+                  {plant?.careLevel}
+                </span>
+                <p
+                  className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow mt-2'
+                >
+                  Added By: {plant?.displayName.toUpperCase()}
+                </p>
+                <p className="text-gray-700 dark:text-gray-200 mt-4 text-lg p-4 border">{plant?.description}</p>
+                <div className="mt-6 space-y-3">
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <span className="font-medium">Watering Frequency:</span> {plant?.wateringFrequency}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <span className="font-medium">Last Watered:</span> {plant?.lastWateredDate}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <span className="font-medium">Next Watering:</span> {plant?.nextWateringDate}
+                  </p>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    <span className="font-medium">Health Status:</span> {plant?.healthStatus}
+                  </p>
                 </div>
+                <div className="mt-6 flex gap-4">
+                  <Link to="/">
+                    <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
+                      Back to Home
+                    </button>
+                  </Link>
+                  <button className="action-btn text-white font-semibold py-2 px-6 rounded-full">
+                    Log Care
+                  </button>
+                </div>
+              </div>
             </div>
-        </section>
-    );
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default PlantDetailsCard;

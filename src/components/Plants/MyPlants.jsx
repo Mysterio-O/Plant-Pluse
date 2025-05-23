@@ -41,54 +41,79 @@ const MyPlants = () => {
 
 
     const handleDelete = (id) => {
-        setLoading(true)
-        fetch(`http://localhost:5000/plants/${id}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.deletedCount > 0) {
-                    // console.log('deleted successfully', data);
-                    const remainingPlants = plants.filter(plant => plant._id !== id);
-                    setPlants(remainingPlants);
-                    setLoading(false)
-                    Swal.fire({
-                        title: 'Deleted!',
-                        text: 'Your plant has been removed successfully.',
-                        icon: 'success',
-                        background: '#0a3b59',
-                        color: '#ffffff',
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#1a567a',
-                        customClass: {
-                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
-                            title: 'text-white font-semibold',
-                            content: 'text-white',
-                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will lose the data!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            cancelButtonColor: "#1a567a",
+            confirmButtonText: "Delete!",
+            cancelButtonText: "Cancel",
+            background: '#0a3b59',
+            color: '#ffffff',
+            customClass: {
+                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+                title: 'text-white font-semibold',
+                content: 'text-white',
+                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
+                cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+            }
+        }).then(result => {
+            if (result.isConfirmed) {
+                setLoading(true)
+                fetch(`http://localhost:5000/plants/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.deletedCount > 0) {
+                            // console.log('deleted successfully', data);
+                            const remainingPlants = plants.filter(plant => plant._id !== id);
+                            setPlants(remainingPlants);
+                            setLoading(false)
+                            Swal.fire({
+                                title: 'Deleted!',
+                                text: 'Your plant has been removed successfully.',
+                                icon: 'success',
+                                background: '#0a3b59',
+                                color: '#ffffff',
+                                confirmButtonText: 'OK',
+                                confirmButtonColor: '#1a567a',
+                                customClass: {
+                                    popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                                    title: 'text-white font-semibold',
+                                    content: 'text-white',
+                                    confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                                }
+                            });
+                        } else {
+                            throw new Error('Deletion failed');
                         }
-                    });
-                } else {
-                    throw new Error('Deletion failed');
-                }
-            })
-            .catch(err => {
-                console.error(err.code, err.message);
-                Swal.fire({
-                    title: 'Error',
-                    text: 'Failed to delete the plant. Please try again.',
-                    icon: 'error',
-                    background: '#0a3b59',
-                    color: '#ffffff',
-                    confirmButtonText: 'OK',
-                    confirmButtonColor: '#1a567a',
-                    customClass: {
-                        popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
-                        title: 'text-white font-semibold',
-                        content: 'text-white',
-                        confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
-                    }
-                });
-            })
+                    })
+                    .catch(err => {
+                        console.error(err.code, err.message);
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'Failed to delete the plant. Please try again.',
+                            icon: 'error',
+                            background: '#0a3b59',
+                            color: '#ffffff',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#1a567a',
+                            customClass: {
+                                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl',
+                                title: 'text-white font-semibold',
+                                content: 'text-white',
+                                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold'
+                            }
+                        });
+                    })
+            }
+        })
+
+
     }
 
 
