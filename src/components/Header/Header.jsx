@@ -86,6 +86,8 @@ const Header = () => {
 
     return (
         <nav className="dark:bg-gray-700 bg-white px-4 py-3 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative shadow-md transition-colors duration-300">
+
+            {/* name and logo */}
             <div className="hidden md:flex gap-3 items-center">
                 <img src="https://i.ibb.co/r24MJjCV/logo-1.webp" alt="Logo" className="h-14 rounded-full shadow-md hidden md:block" />
                 <h2 className="text-3xl font-semibold rancho-regular text-gray-800 dark:text-green-300 ">
@@ -93,12 +95,15 @@ const Header = () => {
                 </h2>
             </div>
 
+
+            {/* links of medium and large devices */}
             <div className="hidden md:block">
                 <ul className="flex gap-6 text-gray-700 dark:text-gray-100 font-medium">
                     {links}
                 </ul>
             </div>
 
+            {/* auth buttons, profile picture, tooltip */}
             <div className="flex items-center space-x-4">
                 <div data-tooltip-id='name_tooltip'>
                     <Tooltip
@@ -145,6 +150,8 @@ const Header = () => {
                 )}
             </div>
 
+
+            {/* theme control */}
             <div className="flex items-center gap-3 ml-4">
 
                 <ThemeSwitch />
@@ -155,6 +162,7 @@ const Header = () => {
                 </div>
             </div>
 
+            {/* links for small devices */}
             <div
                 className={`absolute ${isMenuOpen ? 'top-16 opacity-100 scale-100' : 'top-10 opacity-0 scale-90 pointer-events-none'
                     } right-4 transition-all duration-500 ease-in-out bg-white dark:bg-gray-800 border dark:border-gray-600 p-4 rounded-xl z-20 backdrop-blur-md shadow-xl md:hidden`}

@@ -22,9 +22,9 @@ const AllPlants = () => {
     }, [sort])
     // console.log(plants)
 
-    useEffect(()=> {
+    useEffect(() => {
         document.title = 'All Plants || Plant_Pulse'
-    },[])
+    }, [])
 
 
     const handleSortNext = async () => {
@@ -47,6 +47,7 @@ const AllPlants = () => {
             : (
                 <div className='max-w-6xl mx-auto mt-6'>
 
+                    {/* handle open-close sort buttons */}
                     <button
                         onClick={() => setIsSortOpen(!isSortOpen)}
                         className="btn btn-primary px-6 py-2 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-0.5 transition duration-200 ease-in-out mb-3 text-xl">
@@ -60,6 +61,8 @@ const AllPlants = () => {
 
                     </button>
 
+
+                    {/* sort buttons */}
                     <div className={`${!isSortOpen ? 'hidden' : 'block'}`}>
                         <button
                             onClick={handleSortNext}

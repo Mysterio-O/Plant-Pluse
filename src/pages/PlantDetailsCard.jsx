@@ -84,9 +84,9 @@ const PlantDetailsCard = ({ plant }) => {
                 >
                   {plant?.careLevel}
                 </span>
-                <div className='flex gap-4'>
+                <div className='flex flex-row-reverse justify-between mt-3 gap-2'>
                   <p
-                    className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow mt-2'
+                    className='font-bold text-[#263238] dark:text-[#FFCA28] text-glow mt-2 px-6'
                   >
                     Added By: {plant?.displayName.toUpperCase()}
                   </p>

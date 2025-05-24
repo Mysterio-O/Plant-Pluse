@@ -1,4 +1,4 @@
-import React, { Children, useContext } from 'react';
+import React, { useContext } from 'react';
 import { AuthContext } from './AuthProvider';
 import Loader from '../pages/Loader';
 import { Navigate, useLocation } from 'react-router';

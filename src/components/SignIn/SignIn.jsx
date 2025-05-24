@@ -15,10 +15,9 @@ const SignIn = () => {
     // console.log(location);
 
     const [isEyeOpen, setIsEyeOpen] = useState(false);
-    // const [isErr, setIsErr] = useState(false);
-    const [isLoading,setIsLoading]=useState(false)
+    const [isLoading, setIsLoading] = useState(false)
 
-    const [logging,setLogging]=useState(false);
+    const [logging, setLogging] = useState(false);
 
 
 
@@ -149,8 +148,11 @@ const SignIn = () => {
                 <div className='md:col-span-4 lg:col-span-3 backdrop-blur-md bg-white/10 rounded-xl p-8 shadow-lg w-full max-w-md text-white'>
                     <h2 className="text-2xl font-bold mb-4 text-center">Get Started</h2>
                     <form onSubmit={handleLogin}>
+
+                        {/* email input */}
                         <input name="email" type="email" placeholder="Email" className="input input-bordered w-full mb-4 bg-white/20 text-white placeholder-white" />
 
+                        {/* password input */}
                         <div>
                             <input name='password' type={`${isEyeOpen ? 'text' : 'password'}`} placeholder="Password" className="input input-bordered w-full mb-6 bg-white/20 text-white placeholder-white" />
                             <span
@@ -169,9 +171,7 @@ const SignIn = () => {
                             }
                         </button>
 
-                        {/* {
-                            isErr && <p className='text-red-600 text-center'>Invalid email or password</p>
-                        } */}
+
 
                     </form>
                     <div className="divider text-white">Or Sign in with</div>
@@ -182,7 +182,7 @@ const SignIn = () => {
                             onClick={handleGoogleLogin}
                             className="border border-[#e5eaf2] rounded-md py-2 px-4 flex items-center gap-[10px] text-[1rem] text-[#424242] hover:bg-gray-50 transition-all duration-200 w-full cursor-pointer">
                             <img src="https://i.ibb.co/dQMmB8h/download-4-removebg-preview-1.png" alt="google logo"
-                                className="w-[23px]"/>
+                                className="w-[23px]" />
                             {
                                 isLoading ? 'Loading..' : 'Sign in with Google'
                             }
