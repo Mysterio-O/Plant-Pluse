@@ -20,6 +20,12 @@ const PlantDetails = () => {
     // console.log(plants, typeof id);
     // const plant = plants.find(p => p.id === parseInt(id));
     // console.log(plant)
+
+
+    useEffect(()=> {
+        document.title = `${plant.name}`
+    },[plant])
+
     return (
         <div>
             {

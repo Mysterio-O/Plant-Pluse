@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router';
 
 const AboutUs = () => {
+
+    useEffect(()=> {
+        document.title = 'About Us || Plant_Pulse'
+    },[])
+
     return (
         <section id="about" className="bg-gradient-to-br from-gray-50 to-green-50 dark:from-gray-900 dark:to-gray-800 text-gray-900 dark:text-gray-100 py-16 min-h-screen">
             <div className="container mx-auto px-6 lg:px-8">

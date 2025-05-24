@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { BiSupport } from 'react-icons/bi';
 import { CiLocationOn } from 'react-icons/ci';
 import { FaPhoneSquareAlt } from 'react-icons/fa';
@@ -42,6 +42,10 @@ const ContactUs = () => {
             });
         }, 1000);
     };
+
+    useEffect(()=> {
+        document.title = 'Contact Us || Plant_Pulse'
+    },[])
 
     return (
         <div className="min-h-screen bg-base-100 text-base-content dark:bg-neutral dark:text-neutral-content transition-all duration-300 flex flex-col items-center py-16 px-4">

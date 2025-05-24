@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import AddPlantForm from '../../pages/AddPlantForm';
 
 const AddPlants = () => {
+
+    useEffect(()=> {
+        document.title = 'Add a Plant || Plant_Pulse'
+    },[])
+
     return (
         <div className='min-h-[calc(100vh-72px)] contrast-125 bg-[url(https://i.ibb.co/NgPX07Nc/auth-bg.webp)] bg-cover md:max-w-6xl mx-auto rounded-3xl flex flex-col justify-center items-center p-4 md:p-10 lg:p-18'>
 

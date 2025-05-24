@@ -44,6 +44,10 @@ const EditPlant = () => {
 
     }
 
+    useEffect(()=> {
+        document.title = 'Update Your Plant'
+    },[])
+
     return (
         <div className='min-h-[calc(100vh-72px)] bg-[url(https://i.ibb.co/ccwpc1pn/pexels-jplenio-1103970.jpg)] bg-cover md:max-w-6xl mx-auto rounded-3xl flex flex-col justify-center items-center p-4 md:p-10 lg:p-18'>
 

@@ -117,6 +117,11 @@ const MyPlants = () => {
     }
 
 
+    useEffect(()=> {
+        document.title = 'My Plants || Plant_Pulse'
+    },[])
+
+
     return (
         plants.length === 0 ? (
             <EmptyPage />

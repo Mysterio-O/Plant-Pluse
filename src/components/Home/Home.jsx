@@ -21,6 +21,10 @@ const Home = () => {
 
     }, [location])
 
+    useEffect(()=> {
+        document.title = 'Home || Plant_Pulse'
+    },[])
+
     return (
         <div className=' mt-10'>
             <section className="banner max-w-6xl mx-auto">

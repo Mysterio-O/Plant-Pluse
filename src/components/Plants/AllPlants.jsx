@@ -22,6 +22,10 @@ const AllPlants = () => {
     }, [sort])
     // console.log(plants)
 
+    useEffect(()=> {
+        document.title = 'All Plants || Plant_Pulse'
+    },[])
+
 
     const handleSortNext = async () => {
         // console.log('clicked');
