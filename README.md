@@ -105,6 +105,7 @@ Plant Pulse is a full-featured plant management application that allows users to
   - Logged-in user’s name (non-editable)
   - Email (non-editable)
 - Shows **success alert** upon submission.
+- You can also add plant from **Banner** on a slider i have implanted add plant option.
 
 ---
 
