@@ -15,8 +15,8 @@ const PlantTable = ({ plant }) => {
                         </div>
                     </div>
                     <div>
-                        <div className="font-bold">{name}</div>
-                        <div className="text-sm opacity-50">{category}</div>
+                        <div className="font-bold text-green-300 dark:text-white">{name}</div>
+                        <div className="text-sm opacity-50 bg-gradient-to-r from-yellow-500 to-orange-400 bg-clip-text text-transparent font-semibold">{category}</div>
                     </div>
                 </div>
             </td>
@@ -24,14 +24,16 @@ const PlantTable = ({ plant }) => {
                 <span className="badge badge-ghost badge-sm">{wateringFrequency}</span>
             </td>
             <td>
-                {`last watered ${lastWateredDate}`}
+                <span className='text-black dark:text-white'>
+                    {`Last: ${lastWateredDate}`}
+                </span>
                 <br />
-                <span className="md:badge badge-ghost badge-sm">Next water {nextWateringDate}</span>
+                <span className="md:badge badge-ghost badge-sm">Next: {nextWateringDate}</span>
             </td>
-            <td>{careLevel}</td>
+            <td className={`care-level-${careLevel.toLowerCase()}`}>{careLevel}</td>
             <th>
                 <Link to={`/plantDetails/${_id}`}>
-                    <button className="btn btn-ghost btn-xs">details</button>
+                    <button className="btn btn-info dark:btn-outline  btn-xs">details</button>
                 </Link>
             </th>
         </tr>

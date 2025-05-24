@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import EditPlantForm from '../../pages/EditPlantForm';
 import { AuthContext } from '../../Provider/AuthProvider';
-import Loader from "../../pages/Loader"
 import Lottie from '../Lottie/Lottie';
 const EditPlant = () => {
 

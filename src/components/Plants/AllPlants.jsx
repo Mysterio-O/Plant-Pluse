@@ -14,11 +14,12 @@ const AllPlants = () => {
     const [isSortOpen, setIsSortOpen] = useState(false);
 
     useEffect(() => {
-        fetch(`https://assignment-010-server.vercel.app/plants?sortParam=${sort}`).then(res => res.json()).then(data => {
-            console.log(data)
-            setPlants(data)
-            setLoading(false)
-        })
+        fetch(`https://assignment-010-server.vercel.app/plants?sortParam=${sort}`).then(res => res.json())
+            .then(data => {
+                // console.log(data)
+                setPlants(data)
+                setLoading(false)
+            })
     }, [sort])
     // console.log(plants)
 
@@ -39,6 +40,28 @@ const AllPlants = () => {
     const handleSortDefault = () => {
         setSort('')
     }
+
+
+    const customStyle = `
+    .care-level-easy {
+       color: #10B981;
+     }
+     .care-level-moderate {
+       color: #F59E0B;
+     }
+     .care-level-difficult {
+       color: #EF4444;
+     }
+       .dark .care-level-easy {
+        color: #34D399;
+     }
+     .dark .care-level-moderate {
+        color: #FCD34D;
+     }
+     .dark .care-level-difficult {
+        color: #F87171;
+     }
+    `
 
 
 
@@ -84,13 +107,13 @@ const AllPlants = () => {
                         </button>
                     </div>
 
-
+                    <style>{customStyle}</style>
                     <div className="overflow-x-auto dark:text-white">
                         {
                             loading ? <Loader />
                                 : <table className="table">
                                     {/* head */}
-                                    <thead className='dark:bg-white'>
+                                    <thead className='bg-black dark:bg-green-300 bg-clip-text text-transparent'>
                                         <tr className='w-full'>
                                             <th>Plant</th>
                                             <th>Watering Frequency</th>

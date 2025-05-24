@@ -127,8 +127,7 @@ Plant Pulse is a full-featured plant management application that allows users to
 - **Authentication**: Firebase Auth
 - **Animations**: Lottie-react, Swiper.js, SweetAlert2
 - **Backend**: Express.js, MongoDB, CORS, dotenv
-- **Others**: React Icons, React Tooltip
-
+- **Others**: React Icons, React Tooltip, (AI tools like ChatGPT, Grok to get design idea's)
 ---
 
 ## 🧑‍💻 Final Thoughts

@@ -41,7 +41,24 @@ const Register = () => {
             });
             navigate('/');
         }).catch(err => {
-            console.log(err.code, err.message);
+            // console.log(err.code, err.message);
+            Swal.fire({
+                title: 'Login Failed!',
+                text: err.message || 'Something went wrong while logging in.',
+                icon: 'error',
+                background: 'rgba(89, 10, 10, 0.7)',
+                color: '#ffffff',
+                position: 'center',
+                showConfirmButton: true,
+                confirmButtonText: 'Try Again',
+                confirmButtonColor: '#F87171',
+                customClass: {
+                    popup: 'text-sm md:text-base lg:text-lg rounded-2xl p-6 shadow-2xl backdrop-blur-md',
+                    title: 'text-white font-bold',
+                    content: 'text-white',
+                    confirmButton: 'text-black font-semibold px-6 py-2 rounded-md',
+                }
+            });
         })
     }
 
@@ -97,7 +114,7 @@ const Register = () => {
         //creating user with email and password
         signUpNewUser(email, password).then(userCredential => {
             const user = userCredential.user;
-            console.log('user successfully created account', user);
+            // console.log('user successfully created account', user);
 
             //setting name and photo
             setProfileInfo(profileInfoObj).then(() => {
@@ -123,7 +140,24 @@ const Register = () => {
                 console.error(err.code, err.message);
             })
         }).catch(err => {
-            console.error(err.code, err.message);
+            // console.error(err.code, err.message);
+            Swal.fire({
+                title: 'Signup Failed!',
+                text: err.message || 'Unable to create your account. Please try again.',
+                icon: 'error',
+                background: 'rgba(89, 10, 10, 0.7)', 
+                color: '#ffffff',
+                position: 'center',
+                showConfirmButton: true,
+                confirmButtonText: 'Retry',
+                confirmButtonColor: '#F87171', 
+                customClass: {
+                    popup: 'text-sm md:text-base lg:text-lg rounded-2xl p-6 shadow-2xl backdrop-blur-md',
+                    title: 'text-white font-bold',
+                    content: 'text-white',
+                    confirmButton: 'text-black font-semibold px-6 py-2 rounded-md',
+                }
+            });
         })
 
     }

@@ -88,10 +88,10 @@ const SignIn = () => {
                     timer: 2000, // Auto-close after 2 seconds
                     timerProgressBar: true,
                     showConfirmButton: false,
-                    position: 'top-end', // Top-right corner
-                    toast: true, // Toast-style alert
+                    position: 'top-end', 
+                    toast: true, 
                     customClass: {
-                        popup: 'swal2-custom-popup', // For custom styling
+                        popup: 'swal2-custom-popup', 
                     },
                 }).then(() => {
                     navigate(`${location.state ? location.state : '/'}`);
@@ -103,11 +103,11 @@ const SignIn = () => {
                     icon: 'error',
                     title: 'Login Failed',
                     text: `Error: ${err.message}`,
-                    timer: 4000, // Auto-close after 4 seconds
+                    timer: 4000, 
                     timerProgressBar: true,
                     showConfirmButton: true,
                     confirmButtonText: 'OK',
-                    confirmButtonColor: '#4CAF50', // Green to match watering theme
+                    confirmButtonColor: '#4CAF50', 
                     position: 'top-end',
                     toast: true,
                     customClass: {

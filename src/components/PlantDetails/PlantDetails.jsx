@@ -17,14 +17,11 @@ const PlantDetails = () => {
                 // console.log(data)
             })
     }, [id])
-    // console.log(plants, typeof id);
-    // const plant = plants.find(p => p.id === parseInt(id));
-    // console.log(plant)
 
 
-    useEffect(()=> {
-        document.title = `${plant.name}`
-    },[plant])
+    useEffect(() => {
+        document.title = `${plant.name}-Details/${plant?.displayName}`
+    }, [plant])
 
     return (
         <div>
