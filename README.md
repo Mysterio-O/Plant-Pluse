@@ -133,3 +133,7 @@ Plant Pulse is a full-featured plant management application that allows users to
 ## 🧑‍💻 Final Thoughts
 
 Building Plant Pulse from the ground up was an incredible journey filled with learning and creativity. Hope you enjoy using it as much as I enjoyed building it!
+
+
+##
+- **Added to public repo**
