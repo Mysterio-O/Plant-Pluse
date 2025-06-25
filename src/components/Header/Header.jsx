@@ -85,7 +85,7 @@ const Header = () => {
 
 
     return (
-        <nav className="dark:bg-gray-700 bg-white px-4 py-3 max-w-6xl mx-auto lg:rounded-xl flex justify-between items-center relative shadow-md transition-colors duration-300">
+        <nav className="dark:bg-gray-700 bg-white px-4 py-3 max-w-[1600px] mx-auto lg:rounded-xl flex justify-between items-center relative shadow-md transition-colors duration-300">
 
             {/* name and logo */}
             <div className="hidden md:flex gap-3 items-center">
@@ -98,67 +98,69 @@ const Header = () => {
 
             {/* links of medium and large devices */}
             <div className="hidden md:block">
-                <ul className="flex gap-6 text-gray-700 dark:text-gray-100 font-medium font-semibold">
+                <ul className="flex gap-6 text-gray-700 dark:text-gray-100 font-medium">
                     {links}
                 </ul>
             </div>
 
-            {/* auth buttons, profile picture, tooltip */}
-            <div className="flex items-center space-x-4">
-                <div data-tooltip-id='name_tooltip'>
-                    <Tooltip
-                        id='name_tooltip'
-                        delayShow={300}
-                        delayHide={200}
-                        place='left'
-                        style={{
-                            backgroundColor: 'blue',
-                            color: 'white',
-                            fontWeight: 'bold',
-                            textShadow: '0 0 5px rgba(0,0,0,0.7)',
+            <div className='flex items-center justify-center'>
+                {/* auth buttons, profile picture, tooltip */}
+                <div className="flex items-center space-x-4">
+                    <div data-tooltip-id='name_tooltip'>
+                        <Tooltip
+                            id='name_tooltip'
+                            delayShow={300}
+                            delayHide={200}
+                            place='left'
+                            style={{
+                                backgroundColor: 'blue',
+                                color: 'white',
+                                fontWeight: 'bold',
+                                textShadow: '0 0 5px rgba(0,0,0,0.7)',
 
-                        }}
-                    >
-                        {user?.displayName}
-                        <br />
-                        {user?.email}
-                    </Tooltip>
-                    {
-                        user && <img src={user?.photoURL} alt="" className='w-12 h-12 bg-cover rounded-full bg-black p-2 cursor-zoom-in' />
-                    }
-                </div>
-                {user ? (
-                    <button
-                        onClick={handleLogOut}
-                        className="btn btn-outline border-green-600 text-green-700 hover:bg-green-600 hover:text-white transition-colors duration-300"
-                    >
-                        LogOut
-                    </button>
-                ) : (
-                    <div className="space-x-3">
-                        <Link to="/auth/register">
-                            <button className="btn btn-outline border-blue-500 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
-                                Register
-                            </button>
-                        </Link>
-                        <Link to="/auth/login">
-                            <button className="btn btn-outline border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors duration-300">
-                                SignIn
-                            </button>
-                        </Link>
+                            }}
+                        >
+                            {user?.displayName}
+                            <br />
+                            {user?.email}
+                        </Tooltip>
+                        {
+                            user && <img src={user?.photoURL} alt="" className='w-12 h-12 bg-cover rounded-full bg-black p-2 cursor-zoom-in' />
+                        }
                     </div>
-                )}
-            </div>
+                    {user ? (
+                        <button
+                            onClick={handleLogOut}
+                            className="btn btn-outline border-green-600 text-green-700 hover:bg-green-600 hover:text-white transition-colors duration-300"
+                        >
+                            LogOut
+                        </button>
+                    ) : (
+                        <div className="space-x-3">
+                            <Link to="/auth/register">
+                                <button className="btn btn-outline border-blue-500 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
+                                    Register
+                                </button>
+                            </Link>
+                            <Link to="/auth/login">
+                                <button className="btn btn-outline border-emerald-600 text-emerald-700 hover:bg-emerald-600 hover:text-white transition-colors duration-300">
+                                    SignIn
+                                </button>
+                            </Link>
+                        </div>
+                    )}
+                </div>
 
 
-            {/* theme control */}
-            <div className="flex items-center gap-3 ml-4">
+                {/* theme control */}
+                <div className="flex items-center gap-3 ml-4">
 
-                <ThemeSwitch />
+                    <ThemeSwitch />
 
 
-                <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden cursor-pointer text-gray-700 dark:text-white">
-                    {isMenuOpen ? <MdOutlineCancel size={26} /> : <CiMenuKebab size={26} />}
+                    <div onClick={() => setIsMenuOpen(!isMenuOpen)} className="md:hidden cursor-pointer text-gray-700 dark:text-white">
+                        {isMenuOpen ? <MdOutlineCancel size={26} /> : <CiMenuKebab size={26} />}
+                    </div>
                 </div>
             </div>
 

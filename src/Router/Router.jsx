@@ -12,6 +12,9 @@ import PrivateRoute from "../Provider/PrivateRoute";
 import AboutUs from "../components/AboutUs/AboutUs";
 import EditPlant from "../components/EditPlant/EditPlant";
 import ContactUs from "../components/ContactUs/ContactUs";
+import DashLayout from "../Dashboard/DashLayout/DashLayout";
+import Overview from "../Dashboard/pages/Overview";
+import Profile from "../Dashboard/pages/Profile";
 
 const Router = createBrowserRouter([
     {
@@ -37,7 +40,7 @@ const Router = createBrowserRouter([
                 </PrivateRoute>
             },
             {
-                path:'/edit_plant/:id',
+                path: '/edit_plant/:id',
                 Component: EditPlant
             }
         ]
@@ -53,7 +56,7 @@ const Router = createBrowserRouter([
     {
         path: '/plantDetails/:id',
         element: <PrivateRoute>
-            <PlantDetails/>
+            <PlantDetails />
         </PrivateRoute>
     },
     {
@@ -63,6 +66,17 @@ const Router = createBrowserRouter([
     {
         path: '/contact_us',
         Component: ContactUs
+    },
+    {
+        path: '/dashboard',
+        element: <PrivateRoute>
+            <DashLayout />
+        </PrivateRoute>,
+        children: [
+            { index: true, Component: Overview },
+            {path:'profile',Component:Profile},
+            {path:'add-plant',Component:AddPlants}
+        ]
     }
 ])
 

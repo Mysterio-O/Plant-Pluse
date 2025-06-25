@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { ThemeProvider } from '../contexts/ThemeContext';
 import Header from '../components/Header/Header';
 import { Outlet } from 'react-router';
 import { AuthContext } from '../Provider/AuthProvider';
@@ -8,7 +7,7 @@ import Scroll from '../pages/Scroll';
 const RootLayout = () => {
     const { loading } = useContext(AuthContext);
     return (
-        <ThemeProvider>
+        <>
             <Scroll/>
             {
                 loading ? <Loader />
@@ -17,7 +16,7 @@ const RootLayout = () => {
                         <Outlet />
                     </div>
             }
-        </ThemeProvider>
+        </>
     );
 };
 
