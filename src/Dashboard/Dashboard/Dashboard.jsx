@@ -5,11 +5,19 @@ import { FaLeaf, FaUser, FaPlusCircle, FaSeedling, FaSignOutAlt, FaTree } from '
 import { Tooltip } from 'react-tooltip';
 import { AuthContext } from '../../Provider/AuthProvider';
 import LogoutButton from '../shared/LogoutButton';
+import { motion } from 'motion/react';
 
 const Dashboard = () => {
 
     const { user } = useContext(AuthContext);
 
+
+    const plantPulseVariant = {
+        initial: { scale: 1, x: 0 },
+        whileHover: { scale: 1.3 },
+        whileTap: { scale: 0.9 },
+        transition: { duration: 0.3, ease: 'easeInOut' }
+    }
 
 
 
@@ -25,15 +33,20 @@ const Dashboard = () => {
         <div className='sticky top-0 flex flex-col justify-between pt-16 pb-6 px-4 bg-white dark:bg-gray-400 transition-colors duration-300 h-screen'>
             {/* Logo and Theme Toggle */}
             <div>
-                <div className='flex items-center justify-center gap-2 mb-8'>
-                    <div
+                <div className='flex items-center justify-around gap-2 mb-8'>
+                    <motion.div
+                        variants={plantPulseVariant}
+                        initial="initial"
+                        whileHover="whileHover"
+                        whileTap="whileTap"
+                        transition="transition"
                         data-tooltip-id='home_tooltip'
                         className='flex items-center justify-center gap-2'>
                         <Tooltip
                             id='home_tooltip'
                             delayShow={300}
                             delayHide={200}
-                            place='top'
+                            place='right'
                             style={{
                                 backgroundColor: 'blue',
                                 color: 'white',
@@ -56,7 +69,7 @@ const Dashboard = () => {
                                 Plant_Pulse
                             </h2>
                         </Link>
-                    </div>
+                    </motion.div>
                     <ThemeSwitch />
                 </div>
 

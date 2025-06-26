@@ -6,6 +6,7 @@ import Loader from '../pages/Loader';
 import Scroll from '../pages/Scroll';
 const RootLayout = () => {
     const { loading } = useContext(AuthContext);
+    
     return (
         <>
             <Scroll />

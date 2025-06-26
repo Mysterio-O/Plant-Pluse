@@ -17,6 +17,7 @@ import Overview from "../Dashboard/pages/Overview";
 import Profile from "../Dashboard/pages/Profile";
 import Support from "../components/Support/Support";
 import SwitchAccount from "../Dashboard/SwitchAccount/SwitchAccount";
+import Setting from "../Dashboard/pages/Setting";
 
 const Router = createBrowserRouter([
     {
@@ -71,7 +72,8 @@ const Router = createBrowserRouter([
             { path: 'profile', Component: Profile },
             { path: 'add-plant', Component: AddPlants },
             { path: 'my_plants/:id', Component: MyPlants },
-            { path: 'all_plants', Component: AllPlants }
+            { path: 'all_plants', Component: AllPlants },
+            { path: 'setting', Component: Setting }
         ]
     },
     {

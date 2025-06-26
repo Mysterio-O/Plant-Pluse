@@ -51,7 +51,7 @@ const SignIn = () => {
                 }
             });
 
-            navigate(`${location.state ? location.state : '/'}`)
+            navigate(`${location.state ? location.state : '/dashboard'}`)
         }).catch(err => {
             const errCode = err.code;
             const errMessage = err.message;
@@ -94,7 +94,7 @@ const SignIn = () => {
                         popup: 'swal2-custom-popup', 
                     },
                 }).then(() => {
-                    navigate(`${location.state ? location.state : '/'}`);
+                    navigate(`${location.state ? location.state : '/dashboard'}`);
                 });
             })
             .catch(err => {

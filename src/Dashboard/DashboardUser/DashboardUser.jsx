@@ -8,6 +8,8 @@ import LogoutButton from '../shared/LogoutButton';
 import { PiUserSwitchLight } from 'react-icons/pi';
 import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
+import Body from './Body';
+import { Tooltip } from 'react-tooltip';
 
 
 const DashboardUser = () => {
@@ -59,7 +61,7 @@ const DashboardUser = () => {
                         content: 'text-white'
                     },
                     timer: 1800,
-                    position:'top-end'
+                    position: 'top-end'
                 })
 
                 setTimeout(() => {
@@ -109,13 +111,55 @@ const DashboardUser = () => {
     return (
         <div className='pt-16 pr-4 '>
             {/* setting icon and account toggle */}
-            <div className='flex flex-row-reverse gap-6 items-center justify-start relative'>
-                <span>
-                    <GoQuestion size={24} />
-                </span>
-                <span>
-                    <CiSettings size={30} />
-                </span>
+            <div className='flex  gap-6 items-center justify-end relative'>
+
+                {/* info tooltip box */}
+                <div
+                    data-tooltip-id="info_tip"
+                    data-tooltip-content={`${user?.displayName ? user.displayName : user?.email}'s Dashboard`} // Add tooltip content
+                    data-tooltip-place="top" // Use data-tooltip-place instead of place prop
+                >
+                    <span>
+                        <GoQuestion size={24} />
+                    </span>
+                    <Tooltip
+                        id="info_tip"
+                        delayShow={100}
+                        delayHide={200}
+                        style={{
+                            backgroundColor: '#374151',
+                            color: 'white',
+                            fontWeight: 800,
+                            textShadow: '0 0 5px rgba(0,0,0,0.7)',
+                        }}
+                    />
+                </div>
+
+
+                {/* setting tooltip box */}
+                <div
+                    data-tooltip-id="setting_tip"
+                    data-tooltip-content="Setting"// Add tooltip content
+                    data-tooltip-place="top" // Use data-tooltip-place instead of place prop
+                >
+                    <Link to="/dashboard/setting">
+                        <span className='cursor-pointer'>
+                            <CiSettings size={30} />
+                        </span>
+                    </Link>
+                    <Tooltip
+                        id="setting_tip"
+                        delayShow={100}
+                        delayHide={200}
+                        style={{
+                            backgroundColor: '#374151',
+                            color: 'white',
+                            fontWeight: 800,
+                            textShadow: '0 0 5px rgba(0,0,0,0.7)',
+                        }}
+                    />
+                </div>
+
                 <div className='flex items-center justify-center gap-3'>
                     <div className="bg-gray-400 p-1 rounded-full">
                         <img
@@ -174,6 +218,9 @@ const DashboardUser = () => {
                     </AnimatePresence>
 
                 </div>
+            </div>
+            <div className='mt-10 flex justify-center items-center'>
+                <Body />
             </div>
         </div>
     );
