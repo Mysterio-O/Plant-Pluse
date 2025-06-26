@@ -77,10 +77,10 @@ const NewPlants = () => {
     `;
 
   return (
-    <div>
-      <section id='new_plants' className="py-8 max-w-[1600px] mx-auto bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
+    <div className='px-2 md:px-0'>
+      <section id='new_plants' className="py-8 max-w-[1600px] mx-auto bg-[#E6F4EA] dark:bg-gray-900 ">
         <style>{customStyles}</style>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
             🌿 Explore Our Plant Collection
           </h2>

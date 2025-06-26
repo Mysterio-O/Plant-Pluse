@@ -27,19 +27,19 @@ const Home = () => {
 
     return (
         <div className=''>
-            <section className="banner max-w-[1600px] mx-auto py-2">
+            <section className="banner max-w-[1600px] mx-auto py-2 bg-[#E6F4EA] dark:bg-gray-900">
                 <Banner />
             </section>
             <section className="" id='new_plants'>
                 <NewPlants />
             </section>
-            <section className='mt-16 mb-16 max-w-6xl mx-auto' id='care_section'>
+            <section className='max-w-[1600px] mx-auto' id='care_section'>
                 <PlantCare />
             </section>
-            <section className='max-w-6xl mx-auto mt-16'>
+            <section className='max-w-[1600px] mx-auto'>
                 <PlantsMarquee />
             </section>
-            <section className='max-w-6xl mx-auto'>
+            <section className='max-w-[1600px] mx-auto'>
                 <SeasonalPlant />
             </section>
 

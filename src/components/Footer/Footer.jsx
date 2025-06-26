@@ -14,7 +14,10 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     {/* Brand Section */}
                     <div className="flex flex-col items-center md:items-start">
-                        <h2 className="text-3xl font-bold text-green-400">Plant Pulse</h2>
+                        <div className='flex justify-center items-center gap-2'>
+                            <h2 className="text-3xl font-bold text-green-400 rancho-regular">Plant Pulse</h2>
+                            <img src="https://i.ibb.co/r24MJjCV/logo-1.webp" alt="Logo" className="h-14 rounded-full shadow-md" />
+                        </div>
                         <p className="mt-4 text-gray-400 text-sm text-center md:text-left">
                             Nurturing your love for plants with care tips, inspiration, and community.
                         </p>

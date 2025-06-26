@@ -6,7 +6,7 @@ const PlantCard = ({ plant }) => {
         <div
             className="plant-card rounded-xl overflow-hidden flex flex-col items-center p-6
              bg-gradient-to-br from-green-50 to-emerald-100 
-             dark:bg-white dark:from-white dark:to-white"
+             dark:bg-gray dark:from-gray-400 dark:to-white"
         >
             <div className="w-32 h-32 mb-4">
                 <img
