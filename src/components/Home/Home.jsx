@@ -26,11 +26,11 @@ const Home = () => {
     },[])
 
     return (
-        <div className=' mt-10'>
-            <section className="banner max-w-6xl mx-auto">
+        <div className=''>
+            <section className="banner max-w-[1600px] mx-auto py-2">
                 <Banner />
             </section>
-            <section className="mt-16 max-w-6xl mx-auto" id='new_plants'>
+            <section className="" id='new_plants'>
                 <NewPlants />
             </section>
             <section className='mt-16 mb-16 max-w-6xl mx-auto' id='care_section'>

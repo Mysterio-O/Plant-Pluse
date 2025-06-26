@@ -8,11 +8,13 @@ const RootLayout = () => {
     const { loading } = useContext(AuthContext);
     return (
         <>
-            <Scroll/>
+            <Scroll />
             {
                 loading ? <Loader />
                     : <div className='bg-[#FAFAFA] dark:bg-[#263238] min-h-screen raleway-regular'>
-                        <Header />
+                        <div className='sticky top-0 z-50'>
+                            <Header />
+                        </div>
                         <Outlet />
                     </div>
             }
