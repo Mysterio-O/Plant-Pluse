@@ -17,7 +17,7 @@ const EditPlant = () => {
 
 
     useEffect(() => {
-        fetch(`https://assignment-010-server.vercel.app/plants/${id}`)
+        fetch(`http://localhost:5000/plants/${id}`)
             .then(res => res.json())
             .then(data => {
                 // console.log('data to edit', data);
@@ -43,9 +43,9 @@ const EditPlant = () => {
 
     }
 
-    useEffect(()=> {
+    useEffect(() => {
         document.title = 'Update Your Plant'
-    },[])
+    }, [])
 
     return (
         <div className='min-h-[calc(100vh-72px)] bg-[url(https://i.ibb.co/ccwpc1pn/pexels-jplenio-1103970.jpg)] bg-cover md:max-w-6xl mx-auto rounded-3xl flex flex-col justify-center items-center p-4 md:p-10 lg:p-18'>

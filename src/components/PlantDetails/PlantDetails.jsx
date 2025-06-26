@@ -9,7 +9,7 @@ const PlantDetails = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`https://assignment-010-server.vercel.app/plants/${id}`)
+        fetch(`http://localhost:5000/plants/${id}`)
             .then(res => res.json())
             .then(data => {
                 setPlant(data);

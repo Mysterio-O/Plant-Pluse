@@ -1,11 +1,11 @@
 import React from 'react';
 
-const Profile = () => {
+const Support = () => {
     return (
         <div>
-           
+            support
         </div>
     );
 };
 
-export default Profile;
+export default Support;

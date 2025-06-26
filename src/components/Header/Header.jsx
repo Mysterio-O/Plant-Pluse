@@ -6,80 +6,39 @@ import { CiMenuKebab } from 'react-icons/ci';
 import { MdOutlineCancel } from 'react-icons/md';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { Tooltip } from 'react-tooltip';
-import Swal from 'sweetalert2';
-
 const Header = () => {
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const links = <>
-        <NavLink to='/'><li className='hover:text-blue-500  transition duration-300'>Home</li></NavLink>
-        <NavLink to='/all_plants'><li className='hover:text-blue-500 transition duration-300 '>All Plants</li></NavLink>
-        <NavLink to='/add_plants'><li className='hover:text-blue-500  transition duration-300'>Add Plants</li></NavLink>
-        <NavLink to={`/my_plants/${user?.email}`}><li className='hover:text-blue-500  transition duration-300'>My Plants</li></NavLink>
+        <NavLink
+            to='/'><li
+                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Home</li>
+        </NavLink>
+        <NavLink
+            to='/all_plants'><li
+                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>All Plants</li>
+        </NavLink>
+        <NavLink
+            to='/about_us'><li
+                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>About Us</li>
+        </NavLink>
+        <NavLink
+            to='/contact_us'><li
+                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Contact Us</li>
+        </NavLink>
+        <NavLink
+            to="/support"><li
+                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Support</li>
+        </NavLink>
+        {
+            user && <NavLink to="/dashboard"><li className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Dashboard</li></NavLink>
+        }
     </>
 
 
-    const handleLogOut = () => {
-        Swal.fire({
-            title: "Are you sure?",
-            text: "You will be logged out!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#1a567a",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Log Out!",
-            cancelButtonText: "Cancel",
-            background: '#0a3b59',
-            color: '#ffffff',
-            customClass: {
-                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                title: 'text-white font-semibold',
-                content: 'text-white',
-                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
-                cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                signOutUser().then(() => {
-                    // console.log('users signed out successful');
-                    Swal.fire({
-                        title: "Logged Out!",
-                        text: "You have been successfully logged out.",
-                        icon: "success",
-                        background: '#0a3b59',
-                        color: '#ffffff',
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#1a567a',
-                        customClass: {
-                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                            title: 'text-white font-semibold',
-                            content: 'text-white',
-                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-                        }
-                    });
-                }).catch(err => {
-                    console.error(err.code, err.message);
-                    Swal.fire({
-                        title: "Logout Failed",
-                        text: "An error occurred while logging out. Please try again.",
-                        icon: "error",
-                        background: '#0a3b59',
-                        color: '#ffffff',
-                        confirmButtonText: 'OK',
-                        confirmButtonColor: '#1a567a',
-                        customClass: {
-                            popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                            title: 'text-white font-semibold',
-                            content: 'text-white',
-                            confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-                        }
-                    });
-                })
-            }
-        });
-    }
+    
 
     // console.log(user);
 
@@ -128,15 +87,8 @@ const Header = () => {
                             user && <img src={user?.photoURL} alt="" className='w-12 h-12 bg-cover rounded-full bg-black p-2 cursor-zoom-in' />
                         }
                     </div>
-                    {user ? (
-                        <button
-                            onClick={handleLogOut}
-                            className="btn btn-outline border-green-600 text-green-700 hover:bg-green-600 hover:text-white transition-colors duration-300"
-                        >
-                            LogOut
-                        </button>
-                    ) : (
-                        <div className="space-x-3">
+                    {
+                        !user && <div className="space-x-3">
                             <Link to="/auth/register">
                                 <button className="btn btn-outline border-blue-500 text-blue-600 hover:bg-blue-600 hover:text-white transition-colors duration-300">
                                     Register
@@ -148,7 +100,7 @@ const Header = () => {
                                 </button>
                             </Link>
                         </div>
-                    )}
+                    }
                 </div>
 
 

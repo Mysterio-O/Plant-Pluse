@@ -6,7 +6,7 @@ const NewPlants = () => {
   const [plants, setPlants] = useState([]);
   const [loading, setLoading] = useState(true)
   useEffect(() => {
-    fetch('https://assignment-010-server.vercel.app/plants')
+    fetch('http://localhost:5000/plants')
       .then(res => res.json())
       .then(data => {
         setPlants(data);
@@ -14,7 +14,7 @@ const NewPlants = () => {
       })
   }, []);
 
- 
+
 
 
   const customStyles = `
@@ -86,7 +86,7 @@ const NewPlants = () => {
           </h2>
           {
             loading ?
-              <Loader/>
+              <Loader />
               : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {
                   plants.map(plant => <PlantCard key={plant._id} plant={plant} />)

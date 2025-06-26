@@ -15,6 +15,7 @@ import ContactUs from "../components/ContactUs/ContactUs";
 import DashLayout from "../Dashboard/DashLayout/DashLayout";
 import Overview from "../Dashboard/pages/Overview";
 import Profile from "../Dashboard/pages/Profile";
+import Support from "../components/Support/Support";
 
 const Router = createBrowserRouter([
     {
@@ -26,18 +27,6 @@ const Router = createBrowserRouter([
             {
                 path: '/all_plants',
                 element: <AllPlants></AllPlants>
-            },
-            {
-                path: '/add_plants',
-                element: <PrivateRoute>
-                    <AddPlants></AddPlants>
-                </PrivateRoute>
-            },
-            {
-                path: '/my_plants/:id',
-                element: <PrivateRoute>
-                    <MyPlants></MyPlants>
-                </PrivateRoute>
             },
             {
                 path: '/edit_plant/:id',
@@ -64,6 +53,10 @@ const Router = createBrowserRouter([
         Component: AboutUs
     },
     {
+        path: '/support',
+        Component: Support
+    },
+    {
         path: '/contact_us',
         Component: ContactUs
     },
@@ -74,8 +67,10 @@ const Router = createBrowserRouter([
         </PrivateRoute>,
         children: [
             { index: true, Component: Overview },
-            {path:'profile',Component:Profile},
-            {path:'add-plant',Component:AddPlants}
+            { path: 'profile', Component: Profile },
+            { path: 'add-plant', Component: AddPlants },
+            { path: 'my_plants/:id', Component: MyPlants },
+            { path: 'all_plants', Component: AllPlants }
         ]
     }
 ])

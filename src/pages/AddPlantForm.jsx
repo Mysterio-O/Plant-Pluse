@@ -18,9 +18,9 @@ const AddPlantForm = () => {
         const data = Object.fromEntries(formData.entries());
         // console.log(data);
 
-        const plantsData = { ...data, displayName, email, userPhoto:photoURL }
+        const plantsData = { ...data, displayName, email, userPhoto: photoURL }
 
-        fetch('https://assignment-010-server.vercel.app/plants', {
+        fetch('http://localhost:5000/plants', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
