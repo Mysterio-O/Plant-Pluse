@@ -20,7 +20,7 @@ const NewPlants = () => {
   const customStyles = `
     .plant-card {
        transition: transform 0.4s ease, box-shadow 0.4s ease;
-       background: linear-gradient(135deg, #F0FDF4, #DCFCE7);
+      
      }
     .plant-card:hover {
        transform: scale(1.05);
@@ -78,7 +78,7 @@ const NewPlants = () => {
 
   return (
     <div>
-      <section id='new_plants' className="py-16 bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
+      <section id='new_plants' className="py-8 max-w-[1600px] mx-auto bg-[#E6F4EA] dark:bg-gray-900 rounded-2xl">
         <style>{customStyles}</style>
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center text-[#263238] dark:text-[#FFCA28] mb-12 rancho-regular">
@@ -87,7 +87,7 @@ const NewPlants = () => {
           {
             loading ?
               <Loader />
-              : <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              : <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 md:gap-4 lg:gap-6">
                 {
                   plants.map(plant => <PlantCard key={plant._id} plant={plant} />)
                 }

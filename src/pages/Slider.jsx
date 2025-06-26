@@ -136,7 +136,7 @@ const Slider = () => {
                 {slides.map((slide, index) => (
                     <SwiperSlide key={index}>
                         <div
-                            className={`w-full h-[500px] rounded-2xl bg-overlay bg-cover bg-center bg-no-repeat text-[${slide.textColor}] flex items-center`}
+                            className={`w-full h-[450px] rounded-2xl bg-overlay bg-cover bg-center bg-no-repeat text-[${slide.textColor}] flex items-center`}
                             style={{ backgroundImage: `url(${slide.bg})` }}
                         >
                             <div

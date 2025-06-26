@@ -14,26 +14,26 @@ const Header = () => {
     const links = <>
         <NavLink
             to='/'><li
-                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Home</li>
+                className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>Home</li>
         </NavLink>
         <NavLink
             to='/all_plants'><li
-                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>All Plants</li>
+                className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>All Plants</li>
         </NavLink>
         <NavLink
             to='/about_us'><li
-                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>About Us</li>
+                className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>About Us</li>
         </NavLink>
         <NavLink
             to='/contact_us'><li
-                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Contact Us</li>
+                className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>Contact Us</li>
         </NavLink>
         <NavLink
             to="/support"><li
-                className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Support</li>
+                className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>Support</li>
         </NavLink>
         {
-            user && <NavLink to="/dashboard"><li className='hover:text-blue-500 font-extrabold transition duration-300 uppercase'>Dashboard</li></NavLink>
+            user && <NavLink to="/dashboard"><li className='hover:text-green-500 font-extrabold transition duration-300 uppercase'>Dashboard</li></NavLink>
         }
     </>
 
