@@ -36,7 +36,7 @@ const DashLayout = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col md:pl-[25%]">
+            <div className="flex-1 flex flex-col md:pl-[25%] lg:px-[26%]">
                 {/* Toggle Button */}
                 <div className="py-4 px-2 flex justify-between text-center md:hidden">
                     <button
@@ -46,7 +46,7 @@ const DashLayout = () => {
                         {isMenuOpen ? (
                             <LuPanelRightClose size={30} className="rotate-180" />
                         ) : (
-                            <LuPanelLeftClose size={30} />
+                            <LuPanelLeftClose size={30} className='text-black dark:text-white'/>
                         )}
                     </button>
                     {/* User Sidebar Toggle */}
@@ -65,7 +65,7 @@ const DashLayout = () => {
                 </div>
 
                 {/* Outlet (Main Content Area) */}
-                <div className="mx-auto w-full px-4">
+                <div className="mx-auto w-full  px-4">
                     <Outlet />
                 </div>
             </div>
@@ -77,7 +77,7 @@ const DashLayout = () => {
             <div className={`
           fixed top-0 right-0 h-screen w-3/4 sm:w-1/3 lg:w-1/4 bg-white dark:bg-gray-400 shadow-lg
           transform transition-transform duration-300 ease-in-out z-50
-          ${isUserMenuOpen ? 'translate-x-0' : 'translate-x-full'}
+          ${isUserMenuOpen ? 'translate-x-0' : 'translate-x-full'} lg:translate-x-0
         `}>
                 <DashboardUser handleUserDashClose={handleUserDashClose}/>
             </div>

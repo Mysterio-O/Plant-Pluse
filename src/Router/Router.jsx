@@ -18,6 +18,7 @@ import Support from "../components/Support/Support";
 import SwitchAccount from "../Dashboard/SwitchAccount/SwitchAccount";
 import Setting from "../Dashboard/pages/Setting";
 import Overview from "../Dashboard/pages/Overview";
+import AllPlantsCard from "../pages/AllPlantsCard";
 
 const Router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ const Router = createBrowserRouter([
             { index: true, Component: Home },
             {
                 path: '/all_plants',
-                element: <AllPlants></AllPlants>
+                element: <AllPlantsCard />
             },
             {
                 path: '/edit_plant/:id',
@@ -64,6 +65,7 @@ const Router = createBrowserRouter([
     },
     {
         path: '/dashboard',
+        errorElement: <Page404 />,
         element: <PrivateRoute>
             <DashLayout />
         </PrivateRoute>,

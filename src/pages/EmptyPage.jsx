@@ -15,7 +15,7 @@ const EmptyPage = ({ message = "No plants found!", ctaText = "Add a Plant" }) =>
                 <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 animate-slide-up animate-delay-100">
                     It looks like this space is waiting for some green friends!
                 </p>
-                <Link to='/add_plants'>
+                <Link to='/dashboard/add-plant'>
                     <button
                         className="btn btn-primary bg-gradient-to-r from-green-500 to-teal-500 dark:from-green-400 dark:to-teal-400 border-none text-white font-semibold hover:from-green-600 hover:to-teal-600 transition-all duration-300 px-6 py-3 rounded-lg animate-slide-up animate-delay-200"
                     >

@@ -75,7 +75,7 @@ const Overview = () => {
         <div className='transition-colors duration-300'>
 
             {/* header part */}
-            <header className="flex justify-between items-center flex-wrap gap-4 md:pt-16 mb-8">
+            <header className="flex justify-between items-center gap-4 md:pt-16 mb-8">
                 <h1 className='text-2xl md:text-3xl font-semibold text-black dark:text-white'>
                     Dashboard
                 </h1>
