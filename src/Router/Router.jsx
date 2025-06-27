@@ -13,11 +13,11 @@ import AboutUs from "../components/AboutUs/AboutUs";
 import EditPlant from "../components/EditPlant/EditPlant";
 import ContactUs from "../components/ContactUs/ContactUs";
 import DashLayout from "../Dashboard/DashLayout/DashLayout";
-import Overview from "../Dashboard/pages/Overview";
 import Profile from "../Dashboard/pages/Profile";
 import Support from "../components/Support/Support";
 import SwitchAccount from "../Dashboard/SwitchAccount/SwitchAccount";
 import Setting from "../Dashboard/pages/Setting";
+import Overview from "../Dashboard/pages/Overview";
 
 const Router = createBrowserRouter([
     {

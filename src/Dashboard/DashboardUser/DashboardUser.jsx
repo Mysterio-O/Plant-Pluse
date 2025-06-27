@@ -351,9 +351,9 @@ const DashboardUser = () => {
                 </div>
 
                 <div className='flex items-center justify-center gap-3'>
-                    <div className="bg-gray-400 p-1 rounded-full">
+                    <div className="bg-gray-400 dark:bg-white p-1 rounded-full">
                         <img
-                            className='w-12 h-12 rounded-full'
+                            className='w-8 h-8 rounded-full'
                             src={user?.photoURL}
                             alt={`${user?.displayName ? user.displayName : user.email}'s photo`} />
                     </div>

@@ -1,9 +1,72 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TbWorldSearch } from 'react-icons/tb';
+import 'react-circular-progressbar/dist/styles.css';
+import OverviewCard from './OverviewCard';
+import { AuthContext } from '../../Provider/AuthProvider';
+import { FaLeaf, FaSeedling, FaUsers } from 'react-icons/fa';
 
 const Overview = () => {
-
     const [searchText, setSearchText] = useState('');
+
+    const [plantsCount, setPlantsCount] = useState(0);
+    const [myPlants, setMyPlants] = useState(0);
+    const [usersCount, setUsersCount] = useState(0);
+
+    const { user } = useContext(AuthContext);
+    const { email } = user;
+
+    useEffect(() => {
+        fetch('http://localhost:5000/plant=counts')
+            .then(res => res.json())
+            .then(data => setPlantsCount(data?.count))
+            .catch(err => console.error("Error fetching all plants count.", err));
+
+        fetch(`http://localhost:5000/plants_added/${email}?count=true`)
+            .then(res => res.json())
+            .then(data => setMyPlants(data?.plants))
+
+        fetch('http://localhost:5000/allUsersCount')
+            .then(res => res.json())
+            .then(data => setUsersCount(data?.count))
+            .catch(err => {
+                console.error("error fetching users count. from client side..", err);
+            })
+    }, [email])
+    // console.log(myPlants);
+    console.log(usersCount);
+
+    const cardData = [
+        {
+            title: 'Total Plants',
+            value: plantsCount,
+            progress: plantsCount * 50 / 100,
+            color: '#7E22CE', // purple
+            change: '+14% Inc',
+            changeColor: '#7E22CE',
+            Icon: FaLeaf,
+            iconColor: 'text-[#7E22CE]'
+        },
+        {
+            title: 'My Plants',
+            value: myPlants,
+            progress: myPlants * 50 / 100,
+            color: '#facc15', // yellow
+            change: '+06% Inc',
+            changeColor: '#eab308',
+            Icon:FaSeedling,
+            iconColor: 'text-[#facc15]'
+        },
+        {
+            title: 'Total Users',
+            value: usersCount,
+            progress: usersCount * 50 / 100,
+            color: '#f87171', // red
+            change: '+04% Dec',
+            changeColor: '#f87171',
+            Icon:FaUsers,
+            iconColor: 'text-[#f87171]'
+        }
+    ];
 
     return (
         <div className='transition-colors duration-300'>
@@ -32,9 +95,11 @@ const Overview = () => {
                 </form>
             </header>
 
-            {/* plant stats container */}
-            <div>
-
+            {/* card stats */}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+                {cardData.map((card, idx) => (
+                    <OverviewCard key={idx} card={card} />
+                ))}
             </div>
         </div>
     );
