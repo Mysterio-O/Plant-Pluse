@@ -10,16 +10,27 @@ import { Link, useNavigate } from 'react-router';
 import Swal from 'sweetalert2';
 import Body from './Body';
 import { Tooltip } from 'react-tooltip';
+import { getAccountsFromLocalStorage } from '../../hooks/getloggedAccounts';
+import ProfileBox from './ProfileBox';
 
 
 const DashboardUser = () => {
 
-    const { user, signOutUser } = useContext(AuthContext);
+    const { user, signOutUser, signInUser, googleLogin } = useContext(AuthContext);
     // console.log(user);
 
     const navigate = useNavigate();
 
     const [isArrowOpen, setIsArrowOpen] = useState(false);
+
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const [savedAcc, setSavedAcc] = useState([]);
+
+    const [selectedAccount, setSelectedAccount] = useState(null);
+    const [password, setPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
     const arrowVariant = {
         initial: { y: -20, opacity: 0, scale: 0.7 },
@@ -29,87 +40,266 @@ const DashboardUser = () => {
 
     }
 
+    const modalVariant = {
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.8 },
+        transition: { duration: 0.3, ease: 'easeInOut' },
+    };
+
+    // const handleSwitch = () => {
+    //     setIsSwitchClicked(true)
+    //     Swal.fire({
+    //         title: "Are you sure?",
+    //         text: "You will be logged out!",
+    //         icon: "warning",
+    //         showCancelButton: true,
+    //         confirmButtonColor: "#1a567a",
+    //         cancelButtonColor: "#d33",
+    //         confirmButtonText: "Log Out!",
+    //         cancelButtonText: "Cancel",
+    //         background: '#0a3b59',
+    //         color: '#ffffff',
+    //         customClass: {
+    //             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+    //             title: 'text-white font-semibold',
+    //             content: 'text-white',
+    //             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
+    //             cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+    //         }
+    //     }).then((result) => {
+    //         if (result.isConfirmed) {
+
+    //             Swal.fire({
+    //                 title: "Switching Account...",
+    //                 text: 'Action in progress, Please wait..',
+    //                 icon: 'question',
+    //                 customClass: {
+    //                     popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+    //                     title: 'text-white font-semibold',
+    //                     content: 'text-white'
+    //                 },
+    //                 timer: 1800,
+    //                 position: 'top-end'
+    //             })
+
+    //             setTimeout(() => {
+    //                 signOutUser().then(() => {
+    //                     // console.log('users signed out successful');
+    //                     Swal.fire({
+    //                         title: "Logged Out!",
+    //                         text: "You have been successfully logged out.",
+    //                         icon: "success",
+    //                         background: '#0a3b59',
+    //                         color: '#ffffff',
+    //                         confirmButtonText: 'OK',
+    //                         confirmButtonColor: '#1a567a',
+    //                         customClass: {
+    //                             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+    //                             title: 'text-white font-semibold',
+    //                             content: 'text-white',
+    //                             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+    //                         }
+    //                     });
+    //                     navigate(`${isSwitchClicked ? '/switch_account' : '/'}`)
+    //                 }).catch(err => {
+    //                     console.error(err.code, err.message);
+    //                     Swal.fire({
+    //                         title: "Logout Failed",
+    //                         text: "An error occurred while logging out. Please try again.",
+    //                         icon: "error",
+    //                         background: '#0a3b59',
+    //                         color: '#ffffff',
+    //                         confirmButtonText: 'OK',
+    //                         confirmButtonColor: '#1a567a',
+    //                         customClass: {
+    //                             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
+    //                             title: 'text-white font-semibold',
+    //                             content: 'text-white',
+    //                             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
+    //                         }
+    //                     });
+    //                 })
+    //             }, 2000);
+
+
+    //         }
+    //     });
+    // }
+
+
+
+
     const handleSwitch = () => {
+        setIsModalOpen(true); // Open the modal
+        const savedAccounts = getAccountsFromLocalStorage()
+        const accounts = savedAccounts.filter(acc => acc?.email !== user?.email)
+        setSavedAcc(accounts);
+        setSelectedAccount(null);
+        setPassword('');
+        setPasswordError('');
+    };
+    const handleCancelSwitch = () => {
+        setIsModalOpen(false); // Close the modal
+        setSelectedAccount(null);
+        setPassword('');
+        setPasswordError('');
+    };
+    const handleSelectAccount = (acc) => {
+        setSelectedAccount(acc);
+        setPassword('');
+        setPasswordError('');
+    };
+    const handleConfirmSwitch = async () => {
+        if (!selectedAccount) {
+            Swal.fire({
+                title: 'No Account Selected',
+                text: 'Please select an account to switch to.',
+                icon: 'warning',
+                background: '#0a3b59',
+                color: '#ffffff',
+                confirmButtonColor: '#1a567a',
+            });
+            return;
+        }
+
+        if (selectedAccount?.provider === 'password' && !password) {
+            setPasswordError('Please enter a password.');
+            return;
+        }
+
         Swal.fire({
-            title: "Are you sure?",
-            text: "You will be logged out!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#1a567a",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Log Out!",
-            cancelButtonText: "Cancel",
+            title: 'Switching Account...',
+            text: 'Please wait while we process your request.',
+            icon: 'info',
+            showConfirmButton: false,
             background: '#0a3b59',
             color: '#ffffff',
-            customClass: {
-                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                title: 'text-white font-semibold',
-                content: 'text-white',
-                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
-                cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                Swal.fire({
-                    title: "Switching Account...",
-                    text: 'Action in progress, Please wait..',
-                    icon: 'question',
-                    customClass: {
-                        popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                        title: 'text-white font-semibold',
-                        content: 'text-white'
-                    },
-                    timer: 1800,
-                    position: 'top-end'
-                })
-
-                setTimeout(() => {
-                    signOutUser().then(() => {
-                        // console.log('users signed out successful');
-                        Swal.fire({
-                            title: "Logged Out!",
-                            text: "You have been successfully logged out.",
-                            icon: "success",
-                            background: '#0a3b59',
-                            color: '#ffffff',
-                            confirmButtonText: 'OK',
-                            confirmButtonColor: '#1a567a',
-                            customClass: {
-                                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                                title: 'text-white font-semibold',
-                                content: 'text-white',
-                                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-                            }
-                        });
-                        navigate('/switch_account')
-                    }).catch(err => {
-                        console.error(err.code, err.message);
-                        Swal.fire({
-                            title: "Logout Failed",
-                            text: "An error occurred while logging out. Please try again.",
-                            icon: "error",
-                            background: '#0a3b59',
-                            color: '#ffffff',
-                            confirmButtonText: 'OK',
-                            confirmButtonColor: '#1a567a',
-                            customClass: {
-                                popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-                                title: 'text-white font-semibold',
-                                content: 'text-white',
-                                confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-                            }
-                        });
-                    })
-                }, 2000);
-
-
-            }
+            timer: 1500,
         });
+
+        try {
+            await signOutUser();
+
+            if (selectedAccount.provider === 'google.com') {
+                // Handle Google sign-in
+                await googleLogin();
+            } else {
+                if (!password) {
+                    setPasswordError('Please enter a password.');
+                    Swal.close();
+                    return;
+                }
+                await signInUser(selectedAccount?.email, password);
+            }
+
+
+            Swal.fire({
+                title: 'Account Switched!',
+                text: 'You have successfully switched accounts.',
+                icon: 'success',
+                background: '#0a3b59',
+                color: '#ffffff',
+                confirmButtonColor: '#1a567a',
+            });
+            setIsModalOpen(false);
+            setSelectedAccount(null);
+            setPassword('');
+            navigate('/dashboard');
+        } catch (err) {
+            console.error('Switch account failed:', err);
+            setPasswordError('Invalid password. Please try again.');
+            Swal.fire({
+                title: 'Switch Failed',
+                text: 'Invalid password or an error occurred. Please try again.',
+                icon: 'error',
+                background: '#0a3b59',
+                color: '#ffffff',
+                confirmButtonColor: '#1a567a',
+            });
+        }
+
     }
+    // console.log(savedAcc)
+    console.log('selected user from dashboard user->', selectedAccount)
 
     return (
         <div className='pt-16 pr-4 '>
+
+            <AnimatePresence>
+                {isModalOpen && (
+                    <motion.div
+                        className='fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm'
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.3 }}
+                    >
+                        <motion.div
+                            variants={modalVariant}
+                            initial='initial'
+                            animate='animate'
+                            exit='exit'
+                            className='bg-gray-800 rounded-xl p-6 w-full max-w-md text-white shadow-xl'
+                        >
+                            <h2 className='text-2xl font-semibold mb-4 text-center'>Switch Account</h2>
+                            <p className='text-center mb-6'>Select an account to switch to:</p>
+
+                            <div className='max-h-64 overflow-y-auto space-y-4'>
+                                {savedAcc.length > 0 ? (
+                                    savedAcc.map((acc, idx) => (
+                                        <ProfileBox
+                                            key={idx}
+                                            acc={acc}
+                                            isSelected={selectedAccount?.email === acc.email}
+                                            handleSelectAccount={handleSelectAccount}
+                                        />
+                                    ))
+                                ) : (
+                                    <p className='text-center text-gray-400'>No other accounts available.</p>
+                                )}
+                            </div>
+
+                            {selectedAccount?.provider === 'password' && (
+                                <div className='mt-4'>
+                                    <label className='block text-sm font-medium mb-1'>Password for {selectedAccount.email}</label>
+                                    <input
+                                        type='password'
+                                        value={password}
+                                        onChange={(e) => {
+                                            setPassword(e.target.value);
+                                            setPasswordError('');
+                                        }}
+                                        className='w-full p-2 rounded bg-gray-700 text-white'
+                                        placeholder='Enter password'
+                                    />
+                                    {passwordError && (
+                                        <p className='text-red-500 text-sm mt-1'>{passwordError}</p>
+                                    )}
+                                </div>
+                            )}
+
+                            <div className='flex justify-center gap-4 mt-6'>
+                                {selectedAccount && (
+                                    <button
+                                        onClick={handleConfirmSwitch}
+                                        className='px-4 py-2 bg-blue-600 rounded-lg text-white font-semibold hover:bg-blue-700 transition-all duration-200'
+                                    >
+                                        Switch Account
+                                    </button>
+                                )}
+                                <button
+                                    onClick={handleCancelSwitch}
+                                    className='px-4 py-2 bg-red-600 rounded-lg text-white font-semibold hover:bg-red-700 transition-all duration-200'
+                                >
+                                    Cancel
+                                </button>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
             {/* setting icon and account toggle */}
             <div className='flex  gap-6 items-center justify-end relative'>
 

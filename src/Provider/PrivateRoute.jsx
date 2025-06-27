@@ -21,9 +21,9 @@ const PrivateRoute = ({ children }) => {
         if (location?.pathname) {
             setLocationState(location.pathname);
         }
-        if (location.pathname === '/dashboard') {
-            setIsSwitch(true);
-        }
+        // if (location.pathname === '/dashboard') {
+        //     setIsSwitch(true);
+        // }
     }, [location])
 
     if (loading) return <Loader />
@@ -31,7 +31,8 @@ const PrivateRoute = ({ children }) => {
     if (user && user?.email) return children
 
 
-    return <Navigate state={locationState} to={`${isSwitch ? '/switch_account' : "/auth/login"}`} />
+    // return <Navigate state={locationState} to={`${isSwitch ? '/switch_account' : "/auth/login"}`} />
+    return <Navigate state={locationState} to="/auth/login"/>
 };
 
 export default PrivateRoute;

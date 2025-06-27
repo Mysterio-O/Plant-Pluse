@@ -4,7 +4,7 @@ const existingAccounts = () => {
 
 export const setAccountToLocalStorage = (accountInfo) => {
     const accounts = existingAccounts();
-    const filtered = accounts.filter(acc => acc?.uid !== accountInfo.uid);
+    const filtered = accounts.filter(acc => acc?.email !== accountInfo?.email);
     const updatedAccounts = [accountInfo, ...filtered];
     return localStorage.setItem('loggedAccounts', JSON.stringify(updatedAccounts));
 }

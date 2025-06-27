@@ -36,7 +36,7 @@ const Register = () => {
             // Step 1: Perform Google login and get user data
             const result = await googleLogin();
             const currentUser = result.user;
-            const { uid, providerData, createdAt, lastLoginAt, apiKey } = currentUser;
+            const { uid, providerData, displayName, email, photoURL, createdAt, lastLoginAt, apiKey } = currentUser;
 
             const userInfoToSave = { uid, providerData, createdAt, lastLoginAt, apiKey };
 
@@ -49,7 +49,7 @@ const Register = () => {
             }
             if (response.ok) {
                 const accountInfo = {
-                    uid, providerData, createdAt, lastLoginAt, apiKey
+                    email, displayName, photoURL,provider: currentUser.providerData[0]?.providerId
                 }
                 setAccountToLocalStorage(accountInfo)
             }
@@ -171,8 +171,11 @@ const Register = () => {
             if (!response.ok) {
                 throw new Error(`Failed to save user data: ${response.statusText}`);
             }
-            if(response.ok){
-                setAccountToLocalStorage(userInfoToSave)
+            if (response.ok) {
+                const accountInfo = {
+                    email: user?.email, name, photo, provider:'password'
+                }
+                setAccountToLocalStorage(accountInfo)
             }
 
             const responseData = await response.json();
