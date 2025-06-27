@@ -6,6 +6,8 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import { RxEyeClosed, RxEyeOpen } from 'react-icons/rx';
 import Swal from 'sweetalert2';
 import { UAParser } from 'ua-parser-js';
+import { setAccountToLocalStorage } from '../../hooks/getloggedAccounts';
+import { saveUser } from '../../apis/loginUser';
 
 const Register = () => {
     const { googleLogin, signUpNewUser, setProfileInfo } = useContext(AuthContext);
@@ -34,21 +36,22 @@ const Register = () => {
             // Step 1: Perform Google login and get user data
             const result = await googleLogin();
             const currentUser = result.user;
-            // const { displayName, email, photoURL} = currentUser;
-            // const userInfo = { displayName, email, photoURL };
+            const { uid, providerData, createdAt, lastLoginAt, apiKey } = currentUser;
+
+            const userInfoToSave = { uid, providerData, createdAt, lastLoginAt, apiKey };
 
             // Step 2: Send user data to the server
-            const response = await fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ userInfo:currentUser, deviceInfo })
-            });
+            const response = await saveUser(userInfoToSave, deviceInfo)
 
             // Step 3: Check if the server request was successful
             if (!response.ok) {
                 throw new Error(`Failed to save user data: ${response.statusText}`);
+            }
+            if (response.ok) {
+                const accountInfo = {
+                    uid, providerData, createdAt, lastLoginAt, apiKey
+                }
+                setAccountToLocalStorage(accountInfo)
             }
 
             const responseData = await response.json();
@@ -156,23 +159,20 @@ const Register = () => {
             const userCredential = await signUpNewUser(email, password);
             const user = userCredential.user;
 
+            const { uid, providerData, createdAt, lastLoginAt, apiKey } = user;
+            const userInfoToSave = { uid, providerData, createdAt, lastLoginAt, apiKey };
+
             // Set profile info
             await setProfileInfo(profileInfoObj);
 
             // Send user data to server
-            const response = await fetch('http://localhost:5000/users', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    userInfo: { displayName: name, email, photoURL: photo, uid: user.uid },
-                    deviceInfo,
-                }),
-            });
+            const response = await saveUser(userInfoToSave, deviceInfo)
 
             if (!response.ok) {
                 throw new Error(`Failed to save user data: ${response.statusText}`);
+            }
+            if(response.ok){
+                setAccountToLocalStorage(userInfoToSave)
             }
 
             const responseData = await response.json();
