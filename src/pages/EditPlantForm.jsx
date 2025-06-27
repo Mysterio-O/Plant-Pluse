@@ -23,7 +23,7 @@ const EditPlantForm = ({ plant, isOpen }) => {
         const plantData = Object.fromEntries(formData.entries());
         // console.log(plantData)
 
-        fetch(`http://localhost:5000/plants/${_id}`, {
+        fetch(`https://b11a10-server-side-mysterio-o.vercel.app/plants/${_id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

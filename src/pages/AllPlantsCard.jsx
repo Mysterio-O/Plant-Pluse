@@ -13,7 +13,7 @@ const AllPlantsCard = () => {
     const [isSortOpen, setIsSortOpen] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/plants?sortParam=${sort}`)
+        fetch(`https://b11a10-server-side-mysterio-o.vercel.app/plants?sortParam=${sort}`)
             .then((res) => res.json())
             .then((data) => {
                 setPlants(data);

@@ -20,7 +20,7 @@ const AddPlantForm = () => {
 
         const plantsData = { ...data, displayName, email, userPhoto: photoURL }
 
-        fetch('http://localhost:5000/plants', {
+        fetch('https://b11a10-server-side-mysterio-o.vercel.app/plants', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'

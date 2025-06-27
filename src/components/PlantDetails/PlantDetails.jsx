@@ -9,7 +9,7 @@ const PlantDetails = () => {
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
-        fetch(`http://localhost:5000/plants/${id}`)
+        fetch(`https://b11a10-server-side-mysterio-o.vercel.app/plants/${id}`)
             .then(res => res.json())
             .then(data => {
                 setPlant(data);

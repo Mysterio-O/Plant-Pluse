@@ -17,16 +17,16 @@ const Overview = () => {
     const { email } = user;
 
     useEffect(() => {
-        fetch('http://localhost:5000/plant=counts')
+        fetch('https://b11a10-server-side-mysterio-o.vercel.app/plant=counts')
             .then(res => res.json())
             .then(data => setPlantsCount(data?.count))
             .catch(err => console.error("Error fetching all plants count.", err));
 
-        fetch(`http://localhost:5000/plants_added/${email}?count=true`)
+        fetch(`https://b11a10-server-side-mysterio-o.vercel.app/plants_added/${email}?count=true`)
             .then(res => res.json())
             .then(data => setMyPlants(data?.plants))
 
-        fetch('http://localhost:5000/allUsersCount')
+        fetch('https://b11a10-server-side-mysterio-o.vercel.app/allUsersCount')
             .then(res => res.json())
             .then(data => setUsersCount(data?.count))
             .catch(err => {
@@ -46,7 +46,7 @@ const Overview = () => {
             changeColor: '#7E22CE',
             Icon: FaLeaf,
             iconColor: 'text-[#7E22CE]',
-            to:'/dashboard/all_plants'
+            to: '/dashboard/all_plants'
         },
         {
             title: 'My Plants',
@@ -55,9 +55,9 @@ const Overview = () => {
             color: '#facc15', // yellow
             change: '+06% Inc',
             changeColor: '#eab308',
-            Icon:FaSeedling,
+            Icon: FaSeedling,
             iconColor: 'text-[#facc15]',
-            to:`/dashboard/my_plants/${email}`
+            to: `/dashboard/my_plants/${email}`
         },
         {
             title: 'Total Users',
@@ -66,7 +66,7 @@ const Overview = () => {
             color: '#f87171', // red
             change: '+04% Dec',
             changeColor: '#f87171',
-            Icon:FaUsers,
+            Icon: FaUsers,
             iconColor: 'text-[#f87171]'
         }
     ];
@@ -101,12 +101,12 @@ const Overview = () => {
             {/* card stats */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {cardData.map((card, idx) => (
-                    <OverviewCard key={idx} card={card} idx={idx}/>
+                    <OverviewCard key={idx} card={card} idx={idx} />
                 ))}
             </div>
 
             <div>
-                <OverviewCharts/>
+                <OverviewCharts />
             </div>
         </div>
     );

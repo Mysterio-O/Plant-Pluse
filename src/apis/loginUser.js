@@ -1,5 +1,5 @@
 export const saveUser = (currentUser, deviceInfo) => {
-    return fetch('http://localhost:5000/users', {
+    return fetch('https://b11a10-server-side-mysterio-o.vercel.app/users', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
