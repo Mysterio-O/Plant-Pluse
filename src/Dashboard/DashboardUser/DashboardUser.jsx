@@ -14,7 +14,7 @@ import { getAccountsFromLocalStorage } from '../../hooks/getloggedAccounts';
 import ProfileBox from './ProfileBox';
 
 
-const DashboardUser = () => {
+const DashboardUser = ({handleUserDashClose}) => {
 
     const { user, signOutUser, signInUser, googleLogin } = useContext(AuthContext);
     // console.log(user);
@@ -46,86 +46,6 @@ const DashboardUser = () => {
         exit: { opacity: 0, scale: 0.8 },
         transition: { duration: 0.3, ease: 'easeInOut' },
     };
-
-    // const handleSwitch = () => {
-    //     setIsSwitchClicked(true)
-    //     Swal.fire({
-    //         title: "Are you sure?",
-    //         text: "You will be logged out!",
-    //         icon: "warning",
-    //         showCancelButton: true,
-    //         confirmButtonColor: "#1a567a",
-    //         cancelButtonColor: "#d33",
-    //         confirmButtonText: "Log Out!",
-    //         cancelButtonText: "Cancel",
-    //         background: '#0a3b59',
-    //         color: '#ffffff',
-    //         customClass: {
-    //             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-    //             title: 'text-white font-semibold',
-    //             content: 'text-white',
-    //             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200',
-    //             cancelButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-    //         }
-    //     }).then((result) => {
-    //         if (result.isConfirmed) {
-
-    //             Swal.fire({
-    //                 title: "Switching Account...",
-    //                 text: 'Action in progress, Please wait..',
-    //                 icon: 'question',
-    //                 customClass: {
-    //                     popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-    //                     title: 'text-white font-semibold',
-    //                     content: 'text-white'
-    //                 },
-    //                 timer: 1800,
-    //                 position: 'top-end'
-    //             })
-
-    //             setTimeout(() => {
-    //                 signOutUser().then(() => {
-    //                     // console.log('users signed out successful');
-    //                     Swal.fire({
-    //                         title: "Logged Out!",
-    //                         text: "You have been successfully logged out.",
-    //                         icon: "success",
-    //                         background: '#0a3b59',
-    //                         color: '#ffffff',
-    //                         confirmButtonText: 'OK',
-    //                         confirmButtonColor: '#1a567a',
-    //                         customClass: {
-    //                             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-    //                             title: 'text-white font-semibold',
-    //                             content: 'text-white',
-    //                             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-    //                         }
-    //                     });
-    //                     navigate(`${isSwitchClicked ? '/switch_account' : '/'}`)
-    //                 }).catch(err => {
-    //                     console.error(err.code, err.message);
-    //                     Swal.fire({
-    //                         title: "Logout Failed",
-    //                         text: "An error occurred while logging out. Please try again.",
-    //                         icon: "error",
-    //                         background: '#0a3b59',
-    //                         color: '#ffffff',
-    //                         confirmButtonText: 'OK',
-    //                         confirmButtonColor: '#1a567a',
-    //                         customClass: {
-    //                             popup: 'text-sm md:text-base lg:text-lg rounded-xl p-4 shadow-xl animate__animated animate__fadeIn',
-    //                             title: 'text-white font-semibold',
-    //                             content: 'text-white',
-    //                             confirmButton: 'rounded-lg px-4 py-2 text-white font-semibold hover:bg-opacity-80 transition-all duration-200'
-    //                         }
-    //                     });
-    //                 })
-    //             }, 2000);
-
-
-    //         }
-    //     });
-    // }
 
 
 
@@ -333,7 +253,7 @@ const DashboardUser = () => {
                     data-tooltip-place="top" // Use data-tooltip-place instead of place prop
                 >
                     <Link to="/dashboard/setting">
-                        <span className='cursor-pointer'>
+                        <span onClick={handleUserDashClose} className='cursor-pointer'>
                             <CiSettings size={30} />
                         </span>
                     </Link>

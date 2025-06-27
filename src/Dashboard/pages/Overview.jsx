@@ -4,6 +4,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import OverviewCard from './OverviewCard';
 import { AuthContext } from '../../Provider/AuthProvider';
 import { FaLeaf, FaSeedling, FaUsers } from 'react-icons/fa';
+import OverviewCharts from './OverviewCharts';
 
 const Overview = () => {
     const [searchText, setSearchText] = useState('');
@@ -44,7 +45,8 @@ const Overview = () => {
             change: '+14% Inc',
             changeColor: '#7E22CE',
             Icon: FaLeaf,
-            iconColor: 'text-[#7E22CE]'
+            iconColor: 'text-[#7E22CE]',
+            to:'/dashboard/all_plants'
         },
         {
             title: 'My Plants',
@@ -54,7 +56,8 @@ const Overview = () => {
             change: '+06% Inc',
             changeColor: '#eab308',
             Icon:FaSeedling,
-            iconColor: 'text-[#facc15]'
+            iconColor: 'text-[#facc15]',
+            to:`/dashboard/my_plants/${email}`
         },
         {
             title: 'Total Users',
@@ -72,7 +75,7 @@ const Overview = () => {
         <div className='transition-colors duration-300'>
 
             {/* header part */}
-            <header className="flex justify-between items-center flex-wrap gap-4 pt-16 mb-8">
+            <header className="flex justify-between items-center flex-wrap gap-4 md:pt-16 mb-8">
                 <h1 className='text-2xl md:text-3xl font-semibold text-black dark:text-white'>
                     Dashboard
                 </h1>
@@ -98,8 +101,12 @@ const Overview = () => {
             {/* card stats */}
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
                 {cardData.map((card, idx) => (
-                    <OverviewCard key={idx} card={card} />
+                    <OverviewCard key={idx} card={card} idx={idx}/>
                 ))}
+            </div>
+
+            <div>
+                <OverviewCharts/>
             </div>
         </div>
     );

@@ -3,15 +3,39 @@ import {
     CircularProgressbar,
     buildStyles
 } from 'react-circular-progressbar';
+import { useNavigate } from 'react-router';
+import { motion } from 'motion/react';
 
 const OverviewCard = ({ card }) => {
-    const {Icon} = card
+    const { Icon } = card;
+
+    const navigate = useNavigate();
+
+    const handleClick = (card) => {
+        if (card?.to) {
+            navigate(card.to);
+        }
+    }
+
+    const cardVariants = {
+        initial: { scale: 1 },
+        whileHover: { scale: 1.1 },
+        transition: { duration: 0.3, ease: 'easeInOut' }
+    }
+
+
     return (
-        <div className="bg-white rounded-xl shadow p-6 flex flex-col gap-4">
+        <motion.div
+            variants={cardVariants}
+            initial="initial"
+            whileHover="whileHover"
+            transition="transition"
+            onClick={() => handleClick(card)}
+            className="bg-white rounded-xl shadow p-6 flex flex-col gap-4 cursor-pointer">
             <div className='flex justify-between items-start'>
                 <div>
                     <h4 className="text-gray-500 text-sm font-medium flex justify-center items-center gap-2">{card.title}
-                        <Icon size={26} className={card.iconColor}/>
+                        <Icon size={26} className={card.iconColor} />
                     </h4>
                     <h2 className="text-3xl font-bold text-gray-900">{card.value}</h2>
                     <p className={`text-sm mt-1 font-medium`} style={{ color: card.changeColor }}>
@@ -31,7 +55,7 @@ const OverviewCard = ({ card }) => {
                     />
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

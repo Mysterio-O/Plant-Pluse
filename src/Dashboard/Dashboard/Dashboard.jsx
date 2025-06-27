@@ -7,7 +7,7 @@ import { AuthContext } from '../../Provider/AuthProvider';
 import LogoutButton from '../shared/LogoutButton';
 import { motion } from 'motion/react';
 
-const Dashboard = () => {
+const Dashboard = ({ closeDashboard }) => {
 
     const { user } = useContext(AuthContext);
 
@@ -28,6 +28,11 @@ const Dashboard = () => {
         { name: 'My Plants', icon: <FaSeedling />, path: `/dashboard/my_plants/${user?.email}`, end: true },
         { name: 'All Plants', icon: <FaTree />, path: "/dashboard/all_plants", end: true }
     ];
+
+
+    const handleClick = () => {
+        closeDashboard();
+    }
 
     return (
         <div className='sticky top-0 flex flex-col justify-between pt-16 pb-6 px-4 bg-white dark:bg-gray-400 transition-colors duration-300 h-screen'>
@@ -77,6 +82,7 @@ const Dashboard = () => {
                 <nav className='flex flex-col gap-3'>
                     {navItems.map(item => (
                         <NavLink
+                            onClick={handleClick}
                             key={item.name}
                             to={item.path}
                             end={item?.end}
