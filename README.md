@@ -7,7 +7,13 @@ Plant Pulse is a full-featured plant management application that allows users to
 
 ---
 
+**Server Side repo**: [https://github.com/Mysterio-O/plant-pulse-server](https://github.com/Mysterio-O/plant-pulse-server)
+
 ## 🚀 Features Overview
+
+## Dashboard
+- added account switching option in dashboard
+- many more functionalities
 
 ### 🔝 Navbar
 
